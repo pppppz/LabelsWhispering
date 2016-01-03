@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_flash"
+        android:icon="@drawable/ic_flash_off_white_24dp"
+        android:title="@string/flash_on"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_focus"
+        android:icon="@drawable/ic_auto_focus_on"
+        android:title="@string/auto_focus"
+        app:showAsAction="ifRoom" />
+</menu>
