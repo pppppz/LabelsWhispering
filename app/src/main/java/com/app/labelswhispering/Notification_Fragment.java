@@ -1,8 +1,6 @@
 package com.app.labelswhispering;
 
 
-import android.content.SharedPreferences;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,25 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.labelswhispering.Adapter.ListNearbyAdapter;
-import com.app.labelswhispering.Constants.Constants;
-import com.app.labelswhispering.Foursquare.Criterias.VenuesCriteria;
-import com.app.labelswhispering.Foursquare.Main.FoursquareVenuesNearbyRequestAsync;
 import com.app.labelswhispering.Foursquare.Model.Venue;
-import com.app.labelswhispering.Function.CurrentLocation;
 import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Listener.RecyclerViewOnScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 
 public class Notification_Fragment extends Fragment {
 
     public static LinearLayoutManager layoutManager;
     public static RecyclerView mRecyclerView;
-    private String mAccessToken = "";
     private FragmentActivity fragmentActivity;
     private RecyclerView.Adapter mAdapter;
     private List<Venue> nearbyList = new ArrayList<>();
@@ -40,7 +31,6 @@ public class Notification_Fragment extends Fragment {
     SwipeRefreshLayout.OnRefreshListener pullToRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            getLocation();
             swipeRefresh.setRefreshing(false);
         }
     };
@@ -63,7 +53,7 @@ public class Notification_Fragment extends Fragment {
         layoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
 
         /** create adapter for put on array from class task **/
-        mAdapter = new ListNearbyAdapter(fragmentActivity, nearbyList);
+        // mAdapter = new ListNearbyAdapter(fragmentActivity, nearbyList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
 
@@ -81,48 +71,11 @@ public class Notification_Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //   getLocation();
     }
 
-    public void getVenuesNearby(VenuesCriteria criteria) {
 
-        /** true = explore / false = search **/
-        FoursquareVenuesNearbyRequestAsync request = new FoursquareVenuesNearbyRequestAsync(fragmentActivity, criteria, true);
-        request.execute(getAccessToken());
 
-        List<Venue> venues;
-        try {
-            venues = request.get();
-            for (int i = 0; i < venues.size(); i++) {
-                Venue v = venues.get(i);
-                nearbyList.add(v);
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private String getAccessToken() {
-        if (mAccessToken.equals("")) {
-            SharedPreferences settings = fragmentActivity.getSharedPreferences(Constants.SHARED_PREF_FILE, 0);
-            mAccessToken = settings.getString(Constants.ACCESS_TOKEN, "");
-        }
-        return mAccessToken;
-    }
-
-    private void getLocation() {
-        /** setting venues criteria **/
-        VenuesCriteria venuesCriteria = new VenuesCriteria();
-        venuesCriteria.setQuantity(15);
-        venuesCriteria.setRadius(1000);
-        venuesCriteria.setSection("topPicks");
-        venuesCriteria.setIntent(VenuesCriteria.VenuesCriteriaIntent.BROWSE);
-        Location locationHere = CurrentLocation.get(getActivity());
-        venuesCriteria.setLocation(locationHere);
-
-        /** get venues **/
-        getVenuesNearby(venuesCriteria);
-    }
 
 
 }

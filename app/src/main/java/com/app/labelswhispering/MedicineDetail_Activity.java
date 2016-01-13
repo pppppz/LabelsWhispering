@@ -15,9 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.app.labelswhispering.Adapter.PagerInMoreDetailAdapter;
+import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
-import com.app.labelswhispering.Service.isNetworkConnected;
+import com.app.labelswhispering.Model.Schedule;
 import com.parse.FindCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -25,6 +27,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MedicineDetail_Activity extends AppCompatActivity {
@@ -38,6 +41,7 @@ public class MedicineDetail_Activity extends AppCompatActivity {
     private ParseUser parseUser;
     private boolean hasAdded = false;
     private CoordinatorLayout rootLayout;
+    private List<Medicine> medicineList = new ArrayList<>();
 
 
     @Override
@@ -150,8 +154,34 @@ public class MedicineDetail_Activity extends AppCompatActivity {
                     hasAdded = true;
                 }
                 break;
+            case R.id.action_set_to_schedule:
+                setToSchedule();
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setToSchedule() {
+
+        /** get data from task_input and set data by method in Current.class **/
+        Schedule s = new Schedule();
+        s.setACL(new ParseACL(ParseUser.getCurrentUser()));
+        s.setUser(ParseUser.getCurrentUser());
+        s.setMedicineId(medicineID);
+        s.setName(medicineList.get(0).getName());
+        s.setAmount(medicineList.get(0).getAmount());
+        s.setMorning(medicineList.get(0).isMorning());
+        s.setNoon(medicineList.get(0).isAfterNoon());
+        s.setEvening(medicineList.get(0).isEvening());
+        s.setBedtime(medicineList.get(0).isBedtime());
+        s.setBeforeMeal(medicineList.get(0).isBeforeMeal());
+        s.pinInBackground();
+        s.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                Snackbar.make(rootLayout, "Medicine has added to schedule.", Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void checkIfMedicineHasAdded(final Menu menu) {
@@ -165,10 +195,12 @@ public class MedicineDetail_Activity extends AppCompatActivity {
             public void done(List<Medicine> savedByList, ParseException e) {
                 if (e == null) {
                     // If there are results, update the list of posts
+                    medicineList.clear();
                     if (savedByList.size() == 1) {
                         hasAdded = true;
                         menu.getItem(0).setIcon(R.drawable.ic_favorite_pink_24dp);
                         ParseObject.pinAllInBackground(savedByList);
+                        medicineList.add(savedByList.get(0));
                     } else {
                         hasAdded = false;
                         Log.e(TAG, "don't have this medicine data in column of medicine list , so fav icon will showing border icon");
@@ -192,10 +224,12 @@ public class MedicineDetail_Activity extends AppCompatActivity {
             @Override
             public void done(List<Medicine> savedByList, ParseException e) {
                 if (e == null) {
+                    medicineList.clear();
                     // If there are results, update the list of posts
                     if (savedByList.size() == 1) {
                         hasAdded = true;
                         menu.getItem(0).setIcon(R.drawable.ic_favorite_pink_24dp);
+                        medicineList.add(savedByList.get(0));
                     } else {
                         hasAdded = false;
                         Log.e(TAG, "don't have this medicine data in column of medicine list , so fav icon will showing border icon");

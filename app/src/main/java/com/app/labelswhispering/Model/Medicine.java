@@ -130,4 +130,14 @@ public class Medicine extends ParseObject {
     public void setHowTake(JSONArray howTake) {
         put("HowTake", howTake);
     }
+
+    public int getAmount() {
+        return getInt("Amount");
+    }
+
+    public void setAmount(int amount) {
+        put("Amount", amount);
+    }
+
+
 }

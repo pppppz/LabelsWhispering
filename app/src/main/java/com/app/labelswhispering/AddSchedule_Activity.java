@@ -196,9 +196,9 @@ public class AddSchedule_Activity extends AppCompatActivity {
             s.setBedtime(Bedtime.isChecked());
 
             if (lunch.getSelectedItemId() == 0) {
-                s.setLunch(true);
+                s.setBeforeMeal(true);
             } else {
-                s.setLunch(false);
+                s.setBeforeMeal(false);
             }
             s.setAmount(amount.getSelectedItemPosition() + 1);
             s.pinInBackground();

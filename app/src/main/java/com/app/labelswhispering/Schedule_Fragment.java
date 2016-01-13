@@ -1,6 +1,7 @@
 package com.app.labelswhispering;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,10 @@ import android.view.ViewGroup;
 
 import com.app.labelswhispering.Adapter.ListScheduleAdapter;
 import com.app.labelswhispering.Function.DividerItemDecoration;
+import com.app.labelswhispering.Function.isNetworkConnected;
+import com.app.labelswhispering.Listener.RecyclerItemClickListener;
 import com.app.labelswhispering.Listener.RecyclerViewOnScrollListener;
 import com.app.labelswhispering.Model.Schedule;
-import com.app.labelswhispering.Service.isNetworkConnected;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -36,7 +38,6 @@ public class Schedule_Fragment extends Fragment {
     private SwipeRefreshLayout swipeRefresh;
     private List<Schedule> scheduleList = new ArrayList<>();
     private RecyclerView.Adapter mAdapter;
-
     SwipeRefreshLayout.OnRefreshListener pullToRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
@@ -45,7 +46,17 @@ public class Schedule_Fragment extends Fragment {
             swipeRefresh.setRefreshing(false);
         }
     };
-
+    private String TAG = Schedule_Fragment.class.getSimpleName();
+    RecyclerItemClickListener recyclerItemClickListener = new RecyclerItemClickListener(fragmentActivity, new RecyclerItemClickListener.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            String scheduleID = scheduleList.get(position).getObjectId();
+            Log.e(TAG, "objectId : " + scheduleID);
+            Intent intent = new Intent(fragmentActivity, Detail_Schedule.class);
+            intent.putExtra("scheduleId", scheduleID);
+            startActivity(intent);
+        }
+    });
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +79,7 @@ public class Schedule_Fragment extends Fragment {
         mAdapter = new ListScheduleAdapter(fragmentActivity, scheduleList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.addOnItemTouchListener(recyclerItemClickListener);
 
         /**set list view can listen the event when click some row **/
         mRecyclerView.addOnScrollListener(new RecyclerViewOnScrollListener());
@@ -105,6 +117,7 @@ public class Schedule_Fragment extends Fragment {
                 } else {
                     Log.e("ParseException : ", String.valueOf(error));
                 }
+                MainActivity.progressBar.setVisibility(View.GONE);
             }
         });
 
@@ -120,7 +133,6 @@ public class Schedule_Fragment extends Fragment {
                 if (e == null) {
                     // If there are results, update the list of posts
                     // and notify the adapter
-                    scheduleList.clear();
                     for (Schedule schedule : savedByList) {
                         scheduleList.add(schedule);
                     }
@@ -129,12 +141,16 @@ public class Schedule_Fragment extends Fragment {
                     Log.e("Post retrieval", "Error: " + e.getMessage());
                 }
                 mAdapter.notifyDataSetChanged();
+                MainActivity.progressBar.setVisibility(View.GONE);
             }
         });
     }
 
     //query internet connection , if  online query in parse , if offline query in parse local store.
     private void Query() {
+        MainActivity.progressBar.setVisibility(View.VISIBLE);
+
+        scheduleList.clear();
         if (new isNetworkConnected(fragmentActivity).CheckNow()) {
             updateListOnLine();
         } else {

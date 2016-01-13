@@ -3,13 +3,19 @@ package com.app.labelswhispering.Adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.app.labelswhispering.Model.Schedule;
 import com.app.labelswhispering.R;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -17,7 +23,8 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 
     private List<Schedule> schedules;
     private Context mContext;
-
+    private String objectId;
+    private String TAG = ListScheduleAdapter.class.getSimpleName();
 
     public ListScheduleAdapter(Context context, List<Schedule> dataSet) {
         schedules = dataSet;
@@ -31,11 +38,45 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         return new ViewHolder(view);
     }
 
+    private void setActivateToParse(final boolean isChecked) {
+
+
+        ParseQuery<Schedule> query = ParseQuery.getQuery(Schedule.class);
+        query.getInBackground(objectId, new GetCallback<Schedule>() {
+            @Override
+            public void done(Schedule schedule, ParseException e) {
+                if (e == null) {
+                    schedule.put("Alert", isChecked);
+                    schedule.saveInBackground(new SaveCallback() {
+                        public void done(ParseException e) {
+
+                            Log.e(TAG, "Alert work! ");
+
+                        }
+                    });
+
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int position) {
-        Schedule schedule = schedules.get(position);
+        final Schedule schedule = schedules.get(position);
         viewHolder.titleTask.setText(schedule.getName());
-        viewHolder.toggleButton.setChecked(schedule.isActivate());
+        boolean activate = schedule.isAlert();
+        objectId = schedule.getObjectId();
+        viewHolder.toggleButton.setChecked(activate);
+        viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setActivateToParse(isChecked);
+            }
+        });
+
 
         final int second_color = mContext.getResources().getColor(R.color.secondary_text);
 

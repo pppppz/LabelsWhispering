@@ -27,7 +27,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.app.labelswhispering.PreferencesActivity;
+import com.app.labelswhispering.Preference.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,7 +59,7 @@ final class CameraConfigurationManager {
     }
 
     private static void initializeTorch(Camera.Parameters parameters, SharedPreferences prefs) {
-        boolean currentSetting = prefs.getBoolean(PreferencesActivity.KEY_TOGGLE_LIGHT, false);
+        boolean currentSetting = prefs.getBoolean(SettingsActivity.KEY_TOGGLE_LIGHT, false);
         doSetTorch(parameters, currentSetting);
     }
 
@@ -121,8 +121,8 @@ final class CameraConfigurationManager {
 
         initializeTorch(parameters, prefs);
         String focusMode = null;
-        if (prefs.getBoolean(PreferencesActivity.KEY_AUTO_FOCUS, true)) {
-            if (prefs.getBoolean(PreferencesActivity.KEY_DISABLE_CONTINUOUS_FOCUS, false)) {
+        if (prefs.getBoolean(SettingsActivity.KEY_AUTO_FOCUS, true)) {
+            if (prefs.getBoolean(SettingsActivity.KEY_DISABLE_CONTINUOUS_FOCUS, false)) {
                 focusMode = findSettableValue(parameters.getSupportedFocusModes(),
                         Camera.Parameters.FOCUS_MODE_AUTO);
             } else {
@@ -159,10 +159,10 @@ final class CameraConfigurationManager {
         doSetTorch(parameters, newSetting);
         camera.setParameters(parameters);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean currentSetting = prefs.getBoolean(PreferencesActivity.KEY_TOGGLE_LIGHT, false);
+        boolean currentSetting = prefs.getBoolean(SettingsActivity.KEY_TOGGLE_LIGHT, false);
         if (currentSetting != newSetting) {
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean(PreferencesActivity.KEY_TOGGLE_LIGHT, newSetting);
+            editor.putBoolean(SettingsActivity.KEY_TOGGLE_LIGHT, newSetting);
             editor.apply();
         }
     }

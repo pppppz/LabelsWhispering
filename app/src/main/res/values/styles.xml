@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!-- Set proper title size -->
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+        <!-- Set title color -->
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <!-- ParseUI -->
+    <style name="ParseLoginUI" />
+
+    <style name="ParseLoginUI.Button" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">
+            @drawable/com_parse_ui_parse_login_button_background_selector
+        </item>
+        <item name="android:textColor">@color/com_parse_ui_parse_login_display_text</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ParseLoginUI.Button.ThirdPartyLogin" parent="ParseLoginUI.Button">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">24dp</item>
+    </style>
+
+    <style name="ParseLoginUI.HelpButton" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/com_parse_ui_parse_login_help_button_label_selector
+        </item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="ParseLoginUI.TextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/com_parse_ui_parse_login_display_text</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+    <!--   <item name="android:fontFamily">sans-serif</item> -->
+
+    <style name="ParseLoginUI.EditText" parent="@android:style/Widget.EditText">
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="AppTheme.WithoutActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+    <style name="AppTheme.WithoutActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Base application theme. -->
+    <style name="AppOverlayTheme" parent="Theme.AppCompat.Light.DarkActionBar" />
+
+    <style name="AppTheme.WithoutActionBar.AppOverlayTheme" parent="AppTheme.WithoutActionBar" />
+
+    <style name="AppBaseTheme" parent="android:Theme.Light" />
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1565C0</item>
+        <item name="colorAccent">#E91E63</item>
+    </style>
+
+    <style name="AppTheme.WithoutActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+</resources>

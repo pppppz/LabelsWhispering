@@ -26,7 +26,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.app.labelswhispering.CaptureActivity;
-import com.app.labelswhispering.PreferencesActivity;
+import com.app.labelswhispering.Preference.SettingsActivity;
 import com.app.labelswhispering.R;
 
 import java.io.IOException;
@@ -53,7 +53,7 @@ public final class BeepManager {
     }
 
     private static boolean shouldBeep(SharedPreferences prefs, Context activity) {
-        boolean shouldPlayBeep = prefs.getBoolean(PreferencesActivity.KEY_PLAY_BEEP, CaptureActivity.DEFAULT_TOGGLE_BEEP);
+        boolean shouldPlayBeep = prefs.getBoolean(SettingsActivity.KEY_PLAY_BEEP, CaptureActivity.DEFAULT_TOGGLE_BEEP);
         if (shouldPlayBeep) {
             // See if sound settings overrides this
             AudioManager audioService = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Behavior Settings">
+
+
+    <com.app.labelswhispering.TimePreference
+        android:key="timeMorning_Key"
+        android:title="@string/alert_morning" />
+    <com.app.labelswhispering.TimePreference
+        android:key="timeNoon_Key"
+        android:title="@string/alert_afternoon" />
+    <com.app.labelswhispering.TimePreference
+        android:key="timeEvening_Key"
+        android:title="@string/alert_evening" />
+    <com.app.labelswhispering.TimePreference
+        android:key="timeBedtime_Key"
+        android:title="@string/alert_bedtime" />
+
+</PreferenceScreen>

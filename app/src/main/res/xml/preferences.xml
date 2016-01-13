@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="General Setttings">
+
+
+        <ListPreference
+            android:defaultValue="metric"
+            android:entries="@array/listArray"
+            android:entryValues="@array/listValues"
+            android:key="unitFormat"
+            android:summary="Select the units format"
+            android:title="Units format" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Specific settings">
+
+        <Preference
+            android:key="TIME_KEY"
+            android:persistent="false"
+            android:title="Time settings" />
+
+        <Preference
+            android:key="OCR_KEY"
+            android:persistent="false"
+            android:title="OCR Settings" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="@string/PreferenceAlarmSettings"
+        android:title="@string/PreferenceAlarmSettings">
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:key="@string/PreferenceAlarmNoiseKey"
+            android:ringtoneType="notification|ringtone"
+            android:showDefault="true"
+            android:showSilent="false"
+            android:title="@string/PreferenceAlarmNoiseTitle" />
+        <EditTextPreference
+            android:defaultValue="10"
+            android:key="@string/PreferenceSnooze"
+            android:numeric="integer"
+            android:summary="@string/PreferenceSnoozeSummary"
+            android:title="@string/PreferenceSnooze" />
+        <EditTextPreference
+            android:defaultValue="3"
+            android:key="@string/PreferenceRepeat"
+            android:numeric="integer"
+            android:summary="@string/PreferenceRepeatSummary"
+            android:title="@string/PreferenceRepeat" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/PreferenceShowNotificationIconKey"
+            android:summary="@string/PreferenceShowNotificationIconSummary"
+            android:title="@string/PreferenceShowNotificationIconTitle" />
+        <CheckBoxPreference
+            android:key="@string/PreferenceUseDefaultTimeKey"
+            android:summary="@string/PreferenceUseDefaultTimeSummary"
+            android:title="@string/PreferenceUseDefaultTimeTitle" />
+        <com.app.labelswhispering.Alarm.TimePreference
+            android:defaultValue="@string/DefaultTime"
+            android:dependency="@string/PreferenceUseDefaultTimeKey"
+            android:key="@string/PreferenceDefaultTimeKey"
+            android:summary="@string/PreferenceDefaultTimeSummary"
+            android:title="@string/PreferenceDefaultTimeTitle" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:summary="@string/PreferenceCloseApplicationSettings"
+        android:title="@string/PreferenceCloseApplicationSettings">
+        <CheckBoxPreference
+            android:key="@string/PreferenceCloseOnSetKey"
+            android:summary="@string/PreferenceCloseOnSetSummary"
+            android:title="@string/PreferenceCloseOnSetTitle" />
+        <CheckBoxPreference
+            android:key="@string/PreferenceCloseOnCancelKey"
+            android:summary="@string/PreferenceCloseOnCancelSummary"
+            android:title="@string/PreferenceCloseOnCancelTitle" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/PreferenceShowTimeLeftKey"
+            android:summary="@string/PreferenceShowTimeLeftSummary"
+            android:title="@string/PreferenceShowTimeLeftTitle" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

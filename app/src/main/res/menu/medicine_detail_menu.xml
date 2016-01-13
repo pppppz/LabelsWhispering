@@ -5,4 +5,9 @@
         android:icon="@drawable/ic_favorite_border_pink_24dp"
         android:title="@string/favourite"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_set_to_schedule"
+        android:icon="@drawable/ic_alarm_add_white_24dp"
+        android:title="@string/set_schedule"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="OCR Settings">
+
+    <!-- GENERAL SETTINGS -->
+    <PreferenceCategory android:title="General settings">
+
+        <CheckBoxPreference
+            android:entries="@array/capturemodes"
+            android:key="preference_capture_continuous"
+            android:title="Continuous preview" />
+
+        <ListPreference
+            android:entries="@array/languagenames"
+            android:entryValues="@array/iso6393"
+            android:key="sourceLanguageCodeOcrPref"
+            android:title="Recognize" />
+    </PreferenceCategory>
+
+
+    <!-- ADVANCED SETTINGS -->
+    <PreferenceCategory android:title="Advanced settings">
+
+        <ListPreference
+            android:entries="@array/ocrenginemodes"
+            android:entryValues="@array/ocrenginemodes"
+            android:key="preference_ocr_engine_mode"
+            android:title="OCR engine" />
+
+        <CheckBoxPreference
+            android:key="preferences_auto_focus"
+            android:title="Autofocus" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preferences_disable_continuous_focus"
+            android:title="Standard focus mode" />
+
+        <CheckBoxPreference
+            android:key="preferences_play_beep"
+            android:title="Beep" />
+
+        <EditTextPreference
+            android:key="preference_character_blacklist"
+            android:title="Character blacklist" />
+
+        <EditTextPreference
+            android:key="preference_character_whitelist"
+            android:title="Character whitelist" />
+
+
+        <ListPreference
+            android:entries="@array/pagesegmentationmodes"
+            android:entryValues="@array/pagesegmentationmodes"
+            android:key="preference_page_segmentation_mode"
+            android:title="Page segmentation" />
+
+        <CheckBoxPreference
+            android:key="preferences_reverse_image"
+            android:summary="(For devices with only a front camera)"
+            android:title="Reversed camera image" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

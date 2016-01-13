@@ -23,7 +23,7 @@ import android.hardware.Camera;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.app.labelswhispering.PreferencesActivity;
+import com.app.labelswhispering.Preference.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -56,7 +56,7 @@ public final class AutoFocusManager implements Camera.AutoFocusCallback {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         String currentFocusMode = camera.getParameters().getFocusMode();
         useAutoFocus =
-                sharedPrefs.getBoolean(PreferencesActivity.KEY_AUTO_FOCUS, true) &&
+                sharedPrefs.getBoolean(SettingsActivity.KEY_AUTO_FOCUS, true) &&
                         FOCUS_MODES_CALLING_AF.contains(currentFocusMode);
         Log.i(TAG, "Current focus mode '" + currentFocusMode + "'; use auto focus? " + useAutoFocus);
         manual = false;

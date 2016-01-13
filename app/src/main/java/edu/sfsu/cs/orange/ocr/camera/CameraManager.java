@@ -29,7 +29,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-import com.app.labelswhispering.PreferencesActivity;
+import com.app.labelswhispering.Preference.SettingsActivity;
 
 import java.io.IOException;
 
@@ -132,7 +132,7 @@ public final class CameraManager {
         configManager.setDesiredCameraParameters(theCamera);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        reverseImage = prefs.getBoolean(PreferencesActivity.KEY_REVERSE_IMAGE, false);
+        reverseImage = prefs.getBoolean(SettingsActivity.KEY_REVERSE_IMAGE, false);
 
     }
 
@@ -226,7 +226,7 @@ public final class CameraManager {
             } else if (width > MAX_FRAME_WIDTH) {
                 width = MAX_FRAME_WIDTH;
             }
-            int height = screenResolution.y * 1 / 5;
+            int height = screenResolution.y / 5;
             if (height < MIN_FRAME_HEIGHT) {
                 height = MIN_FRAME_HEIGHT;
             } else if (height > MAX_FRAME_HEIGHT) {

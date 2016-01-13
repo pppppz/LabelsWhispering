@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.MedicineDetail_Activity;
 import com.app.labelswhispering.Model.Medicine;
 import com.app.labelswhispering.R;
-import com.app.labelswhispering.Service.isNetworkConnected;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.app.labelswhispering.Service.isNetworkConnected;
+import com.app.labelswhispering.Function.isNetworkConnected;
 
 public class ScannerFragmentActivity extends AppCompatActivity {
     @Override

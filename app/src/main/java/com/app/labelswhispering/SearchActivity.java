@@ -16,12 +16,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.labelswhispering.Adapter.ListMedicineAdapter;
 import com.app.labelswhispering.Function.DividerItemDecoration;
+import com.app.labelswhispering.Function.RecyclerItemClickListener;
+import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
-import com.app.labelswhispering.Service.isNetworkConnected;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -38,6 +41,7 @@ public class SearchActivity extends AppCompatActivity {
     private SearchView searchView;
     private TextView tvShowNoResults;
     private CoordinatorLayout rootLayout_search;
+    private ProgressBar progressBar;
 
     private RecyclerView.Adapter mAdapter;
 
@@ -46,6 +50,8 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity_layout);
         handleIntent(getIntent());
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar_search);
 
         rootLayout_search = (CoordinatorLayout) findViewById(R.id.rootLayout_Search);
         Toolbar toolbar_search = (Toolbar) findViewById(R.id.toolbar_search);
@@ -92,10 +98,27 @@ public class SearchActivity extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setIconifiedByDefault(false);
+        //  searchView.setIconifiedByDefault(false);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconified(false);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    showInputMethod(view.findFocus());
+                }
+            }
+        });
+
 
         return true;
+    }
+
+    private void showInputMethod(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(view, 0);
+        }
     }
 
     @Override
@@ -128,14 +151,15 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void doMySearch(String word) {
+        progressBar.setVisibility(View.VISIBLE);
+
         searchView.setQuery(word, false);
 
         if (new isNetworkConnected(this).CheckNow()) {
             //search
             ParseQuery<Medicine> query = ParseQuery.getQuery(Medicine.class);
-            query.whereContains("name", word);
+            query.whereMatches("name", "(" + word + ")", "i");
             query.addAscendingOrder("name");
-
             query.findInBackground(new FindCallback<Medicine>() {
                 @Override
                 public void done(List<Medicine> items, ParseException error) {
@@ -156,6 +180,7 @@ public class SearchActivity extends AppCompatActivity {
 
                         Log.e(TAG, "ParseException : " + error);
                     }
+                    progressBar.setVisibility(View.INVISIBLE);
 
                 }
             });
@@ -170,6 +195,7 @@ public class SearchActivity extends AppCompatActivity {
                     })
                     .show();
         }
+
     }
 
     private void openWIFI() {
