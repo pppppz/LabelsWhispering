@@ -1,6 +1,6 @@
 package com.app.labelswhispering.Preference;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -14,12 +14,12 @@ public class MyPreferenceFragment extends PreferenceFragment implements Preferen
     private Callback mCallback;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity activity) {
 
-        super.onAttach(context);
+        super.onAttach(activity);
 
-        if (context instanceof Callback) {
-            mCallback = (Callback) context;
+        if (activity instanceof Callback) {
+            mCallback = (Callback) activity;
         } else {
             throw new IllegalStateException("Owner must implement URLCallback interface");
         }

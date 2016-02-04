@@ -14,7 +14,7 @@ public class ScannerFragmentActivity extends AppCompatActivity {
     public void onCreate(Bundle state) {
         super.onCreate(state);
         if (!new isNetworkConnected(this).CheckNow()) {
-            Toast.makeText(this, "Please check your connection.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.please_check_your_connection, Toast.LENGTH_LONG).show();
             finish();
         }
         setContentView(R.layout.barcode_scanner);

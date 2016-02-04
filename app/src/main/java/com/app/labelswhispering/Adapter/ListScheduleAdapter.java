@@ -2,12 +2,11 @@ package com.app.labelswhispering.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.labelswhispering.Model.Schedule;
@@ -65,20 +64,11 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int position) {
-        final Schedule schedule = schedules.get(position);
+        Schedule schedule = schedules.get(position);
         viewHolder.titleTask.setText(schedule.getName());
-        boolean activate = schedule.isAlert();
-        objectId = schedule.getObjectId();
-        viewHolder.toggleButton.setChecked(activate);
-        viewHolder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setActivateToParse(isChecked);
-            }
-        });
+        //  objectId = schedule.getObjectId();
 
-
-        final int second_color = mContext.getResources().getColor(R.color.secondary_text);
+        int second_color = mContext.getResources().getColor(R.color.secondary_text);
 
         if (!schedule.isMorning()) {
             viewHolder.tvMorning.setTextColor(second_color);
@@ -96,6 +86,19 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
             viewHolder.tvBedtime.setTextColor(second_color);
         }
 
+        if (schedule.isBeforeMeal()) {
+            viewHolder.rl_before.setBackgroundResource(R.color.before_row);
+        } else {
+            viewHolder.rl_before.setBackgroundResource(R.color.gray_row);
+        }
+        if (schedule.isAfterMeal()) {
+            viewHolder.rl_after.setBackgroundResource(R.color.after_row);
+        } else {
+            viewHolder.rl_after.setBackgroundResource(R.color.gray_row);
+        }
+
+
+
     }
 
     @Override
@@ -105,17 +108,19 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView titleTask, tvMorning, tvNoon, tvEvening, tvBedtime;
-        public SwitchCompat toggleButton;
+        public RelativeLayout rl_before, rl_after;
 
 
         public ViewHolder(View view) {
             super(view);
             titleTask = (TextView) view.findViewById(R.id.tv_name);
-            toggleButton = (SwitchCompat) view.findViewById(R.id.toggleSchedule);
             tvMorning = (TextView) view.findViewById(R.id.tvMorning);
             tvNoon = (TextView) view.findViewById(R.id.tvNoon);
             tvEvening = (TextView) view.findViewById(R.id.tvEvening);
             tvBedtime = (TextView) view.findViewById(R.id.tvBedtime);
+
+            rl_before = (RelativeLayout) view.findViewById(R.id.rl_before);
+            rl_after = (RelativeLayout) view.findViewById(R.id.rl_after);
         }
     }
 }

@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.labelswhispering.Adapter.ListMedicineAdapter;
+import com.app.labelswhispering.DetailFragment.Main_Medicine_Details_Activity;
 import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Function.RecyclerItemClickListener;
 import com.app.labelswhispering.Function.isNetworkConnected;
@@ -39,7 +40,7 @@ public class SearchActivity extends AppCompatActivity {
     private final String TAG = SearchActivity.class.getSimpleName();
     private List<Medicine> medicineList = new ArrayList<>();
     private SearchView searchView;
-    private TextView tvShowNoResults;
+    private TextView tvShowNoResults, tvShowTxtNumberOfResults;
     private CoordinatorLayout rootLayout_search;
     private ProgressBar progressBar;
 
@@ -62,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         tvShowNoResults = (TextView) findViewById(R.id.tvNotFound);
+        tvShowTxtNumberOfResults = (TextView) findViewById(R.id.txtResults);
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_search);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, R.drawable.divider));
@@ -80,9 +82,13 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 String medicineID = medicineList.get(position).getObjectId();
+                String medicineName = medicineList.get(position).getName();
                 Log.e(TAG, "objectId : " + medicineID);
-                Intent intent = new Intent(SearchActivity.this, MedicineDetail_Activity.class);
+                Intent intent = new Intent(SearchActivity.this, Main_Medicine_Details_Activity.class);
                 intent.putExtra("medicineID", medicineID);
+                intent.putExtra("medicineName", medicineName);
+                intent.putExtra("flag", "search");
+
                 startActivity(intent);
                 finish();
             }
@@ -171,6 +177,8 @@ public class SearchActivity extends AppCompatActivity {
                             for (int i = 0; i < items.size(); i++) {
                                 medicineList.add(items.get(i));
                             }
+                            tvShowTxtNumberOfResults.setText(R.string.about + " " + items.size() + " " + R.string.results);
+                            tvShowTxtNumberOfResults.setVisibility(View.VISIBLE);
                         } else {
                             tvShowNoResults.setVisibility(View.VISIBLE);
                         }
@@ -186,8 +194,8 @@ public class SearchActivity extends AppCompatActivity {
             });
 
         } else {
-            Snackbar.make(rootLayout_search, "Please check your connection.", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Check now!", new View.OnClickListener() {
+            Snackbar.make(rootLayout_search, R.string.please_check_your_connection, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.check_now, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             openWIFI();

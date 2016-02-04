@@ -1,33 +1,62 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Alarm.AlarmActivity">
+    tools:context=".Service.AlarmActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp"
+        android:text="@string/it_s_time_to_take"
+        android:textColor="#0099CC"
+        android:textSize="35sp" />
 
     <TextView
         android:id="@+id/textViewCurrentTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/DefaultTime"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="60sp" />
+        android:layout_below="@id/textView4"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp"
+        android:textColor="#0099CC"
+        android:textSize="35sp" />
 
-    <Button
-        android:id="@+id/buttonSnooze"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.5"
-        android:text="@string/Snooze"
-        android:textSize="50sp" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonStop"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.5"
-        android:text="@string/Stop"
-        android:textSize="50sp" />
+        <com.skyfishjy.library.RippleBackground
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            app:rb_color="#0099CC"
+            app:rb_duration="3000"
+            app:rb_radius="75dp"
+            app:rb_rippleAmount="4"
+            app:rb_scale="3">
 
-</LinearLayout>
+            <com.victor.ringbutton.RingButton
+                android:id="@+id/ringButton"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_centerInParent="true"
+                android:focusableInTouchMode="false"
+                app:ringbutton_downDrawable="@drawable/ic_done_blue_48dp"
+                app:ringbutton_downText="I'm done."
+                app:ringbutton_upDrawable="@drawable/ic_refresh_blue_48dp"
+                app:ringbutton_upText="Snooze later." />
+
+        </com.skyfishjy.library.RippleBackground>
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
+

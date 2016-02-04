@@ -1,211 +1,289 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout_schedule_detail"
+    style="@style/AppBaseTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/add_schedule_toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="56dp">
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginStart="@dimen/expanded_toolbar_title_margin_start"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingTop="16dp"
-                android:text="@string/name"
-                android:textSize="20sp" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/schedule_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="0dp"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="start|top"
-                android:orientation="horizontal">
-                <!--
-                                   <EditText
-                                       android:id="@+id/ed_nameMedicine"
-                                       android:layout_width="0dp"
-                                       android:layout_height="wrap_content"
-                                       android:layout_weight="1"
-                                       android:ems="10"
-                                       android:hint="@string/input_title"
-                                       android:inputType="text"
-                                       android:paddingLeft="16dp"
-                                       android:paddingTop="32dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="16dp"
+                android:paddingTop="0dp">
 
-                                   </EditText>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/lNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                                   -->
+                    <EditText
+                        android:id="@+id/et_nameMedicine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/medicine_name"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.v7.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/ac_nameMedicine"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/lNameLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="36dp"
-                    android:layout_marginTop="17dp"
-                    android:ems="10"
-                    android:text="">
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
 
-                    <requestFocus />
-                </android.support.v7.widget.AppCompatAutoCompleteTextView>
+                    <EditText
+                        android:id="@+id/ldesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/description" />
+                </android.support.design.widget.TextInputLayout>
+
+
             </LinearLayout>
-        </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
-        <LinearLayout
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedscroll_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_schedule"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
+            <ProgressBar
+                android:id="@+id/progress_bar_schedule"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingEnd="0dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="0dp"
-                android:paddingTop="16dp"
-                android:text="@string/lunch"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/spinner_lunch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingTop="16dp"
-                android:text="@string/amount"
-                android:textSize="20sp" />
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:indeterminate="true"
+                android:visibility="invisible" />
 
             <LinearLayout
+                android:id="@+id/ll_switch"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="32dp">
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
 
-                <RadioGroup
-                    android:id="@+id/radio_group_type"
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_weight="0.6"
+                    android:text="@string/alert"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#212121" />
 
-                    <RadioButton
-                        android:id="@+id/radio_tablet"
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/ll_medicine_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_switch"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/medicine_type"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#212121" />
+
+                <TextView
+                    android:id="@+id/txtMedicineType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/medicine_type"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textColor="#616161" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <LinearLayout
+                android:id="@+id/ll_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_medicine_type"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        android:text="@string/tablet" />
+                        android:layout_weight="0.50"
+                        android:text="@string/amount"
+                        android:textColor="#212121"
+                        android:textSize="20sp" />
 
-                    <RadioButton
-                        android:id="@+id/radio_liquid"
+                    <EditText
+                        android:id="@+id/ed_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.50"
+                        android:hint="@string/enter_amount" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_before_after"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_amount"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
+
+                <CheckBox
+                    android:id="@+id/checkBox_BeforeMeal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:checked="false"
+                    android:paddingLeft="16dp"
+                    android:text="@string/before_meal" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_afterMeal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:checked="false"
+                    android:paddingRight="16dp"
+                    android:text="@string/after_meal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_before_after"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_often"
+                    android:textColor="#212121"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
+
+                    <CheckBox
+                        android:id="@+id/cb_morning"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/liquid" />
-                </RadioGroup>
+                        android:checked="false"
+                        android:text="@string/morning" />
 
+                    <CheckBox
+                        android:id="@+id/cb_noon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="@string/noon" />
 
+                    <CheckBox
+                        android:id="@+id/cb_evening"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="@string/evening" />
+
+                    <CheckBox
+                        android:id="@+id/cb_bedtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="@string/bedtime" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1">
 
-                <EditText
-                    android:id="@+id/ed_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.50"
-                    android:hint="@string/enter_amount" />
+        </RelativeLayout>
 
-                <Spinner
-                    android:id="@+id/spinner_amounttype"
-                    android:layout_width="182dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.50"
-                    android:spinnerMode="dropdown" />
-            </LinearLayout>
 
-        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingTop="16dp"
-                android:text="@string/how_often"
-                android:textSize="20sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="32dp">
-
-                <CheckBox
-                    android:id="@+id/cb_morning"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="@string/morning" />
-
-                <CheckBox
-                    android:id="@+id/cb_noon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="@string/noon" />
-
-                <CheckBox
-                    android:id="@+id/cb_evening"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="@string/evening" />
-
-                <CheckBox
-                    android:id="@+id/cb_bedtime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="@string/bedtime" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
+
 

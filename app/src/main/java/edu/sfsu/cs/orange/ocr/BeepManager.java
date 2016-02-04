@@ -25,14 +25,14 @@ import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.app.labelswhispering.CaptureActivity;
 import com.app.labelswhispering.Preference.SettingsActivity;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.ScanOCR_Activity;
 
 import java.io.IOException;
 
 /**
- * Manages beeps and vibrations for {@link CaptureActivity}.
+ * Manages beeps and vibrations for {@link ScanOCR_Activity}.
  * <p/>
  * The code for this class was adapted from the ZXing project: http://code.google.com/p/zxing/
  */
@@ -53,7 +53,7 @@ public final class BeepManager {
     }
 
     private static boolean shouldBeep(SharedPreferences prefs, Context activity) {
-        boolean shouldPlayBeep = prefs.getBoolean(SettingsActivity.KEY_PLAY_BEEP, CaptureActivity.DEFAULT_TOGGLE_BEEP);
+        boolean shouldPlayBeep = prefs.getBoolean(SettingsActivity.KEY_PLAY_BEEP, ScanOCR_Activity.DEFAULT_TOGGLE_BEEP);
         if (shouldPlayBeep) {
             // See if sound settings overrides this
             AudioManager audioService = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
@@ -74,7 +74,7 @@ public final class BeepManager {
             }
         });
 
-        AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.beep);
+        AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.remind_en);
         try {
             mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
             file.close();

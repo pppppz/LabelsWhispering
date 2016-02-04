@@ -5,10 +5,10 @@
     <!-- GENERAL SETTINGS -->
     <PreferenceCategory android:title="General settings">
 
-        <CheckBoxPreference
-            android:entries="@array/capturemodes"
-            android:key="preference_capture_continuous"
-            android:title="Continuous preview" />
+        <!-- <CheckBoxPreference
+             android:entries="@array/capturemodes"
+             android:key="preference_capture_continuous"
+             android:title="Continuous preview" /> -->
 
         <ListPreference
             android:entries="@array/languagenames"
@@ -22,12 +22,14 @@
     <PreferenceCategory android:title="Advanced settings">
 
         <ListPreference
+            android:defaultValue="Both"
             android:entries="@array/ocrenginemodes"
             android:entryValues="@array/ocrenginemodes"
             android:key="preference_ocr_engine_mode"
             android:title="OCR engine" />
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="preferences_auto_focus"
             android:title="Autofocus" />
 
@@ -37,17 +39,22 @@
             android:title="Standard focus mode" />
 
         <CheckBoxPreference
-            android:key="preferences_play_beep"
-            android:title="Beep" />
+            android:defaultValue="true"
+            android:key="preference_toggle_light"
+            android:title="Toggle Flash" />
 
-        <EditTextPreference
-            android:key="preference_character_blacklist"
-            android:title="Character blacklist" />
+        <!--  <CheckBoxPreference
+              android:key="preferences_play_beep"
+              android:title="Beep" />
 
-        <EditTextPreference
-            android:key="preference_character_whitelist"
-            android:title="Character whitelist" />
+          <EditTextPreference
+              android:key="preference_character_blacklist"
+              android:title="Character blacklist" />
 
+          <EditTextPreference
+              android:key="preference_character_whitelist"
+              android:title="Character whitelist" />
+  -->
 
         <ListPreference
             android:entries="@array/pagesegmentationmodes"
@@ -55,10 +62,10 @@
             android:key="preference_page_segmentation_mode"
             android:title="Page segmentation" />
 
-        <CheckBoxPreference
-            android:key="preferences_reverse_image"
-            android:summary="(For devices with only a front camera)"
-            android:title="Reversed camera image" />
+        <!--  <CheckBoxPreference
+              android:key="preferences_reverse_image"
+              android:summary="(For devices with only a front camera)"
+              android:title="Reversed camera image" /> -->
 
     </PreferenceCategory>
 </PreferenceScreen>

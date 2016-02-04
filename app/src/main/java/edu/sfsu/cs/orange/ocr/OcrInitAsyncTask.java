@@ -20,7 +20,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.app.labelswhispering.CaptureActivity;
+import com.app.labelswhispering.ScanOCR_Activity;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 import org.xeustechnologies.jtar.TarEntry;
@@ -65,7 +65,7 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
             ".traineddata"
     };
     private final String languageCode;
-    private CaptureActivity activity;
+    private ScanOCR_Activity activity;
     private Context context;
     private TessBaseAPI baseApi;
     private ProgressDialog dialog;
@@ -84,7 +84,7 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
      * @param languageName        Name of the OCR language, for example, "English"
      * @param ocrEngineMode       Whether to use Tesseract, Cube, or both
      */
-    public OcrInitAsyncTask(CaptureActivity activity, TessBaseAPI baseApi, ProgressDialog dialog,
+    public OcrInitAsyncTask(ScanOCR_Activity activity, TessBaseAPI baseApi, ProgressDialog dialog,
                             ProgressDialog indeterminateDialog, String languageCode, String languageName,
                             int ocrEngineMode) {
         this.activity = activity;
@@ -121,7 +121,7 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
         // Example Tesseract data filename: "eng.traineddata"
         String destinationFilenameBase = languageCode + ".traineddata";
         boolean isCubeSupported = false;
-        for (String s : CaptureActivity.CUBE_SUPPORTED_LANGUAGES) {
+        for (String s : ScanOCR_Activity.CUBE_SUPPORTED_LANGUAGES) {
             if (s.equals(languageCode)) {
                 isCubeSupported = true;
             }
@@ -223,15 +223,15 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
         }
 
         // If OSD data file is not present, download it
-        File osdFile = new File(tessdataDir, CaptureActivity.OSD_FILENAME_BASE);
+        File osdFile = new File(tessdataDir, ScanOCR_Activity.OSD_FILENAME_BASE);
         boolean osdInstallSuccess = false;
         if (!osdFile.exists()) {
             // Check assets for language data to install. If not present, download from Internet
             languageName = "orientation and script detection";
             try {
                 // Check for, and delete, partially-downloaded OSD files
-                String[] badFiles = {CaptureActivity.OSD_FILENAME + ".gz.download",
-                        CaptureActivity.OSD_FILENAME + ".gz", CaptureActivity.OSD_FILENAME};
+                String[] badFiles = {ScanOCR_Activity.OSD_FILENAME + ".gz.download",
+                        ScanOCR_Activity.OSD_FILENAME + ".gz", ScanOCR_Activity.OSD_FILENAME};
                 for (String filename : badFiles) {
                     File file = new File(tessdataDir, filename);
                     if (file.exists()) {
@@ -239,11 +239,11 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
                     }
                 }
 
-                Log.d(TAG, "Checking for OSD data (" + CaptureActivity.OSD_FILENAME_BASE
+                Log.d(TAG, "Checking for OSD data (" + ScanOCR_Activity.OSD_FILENAME_BASE
                         + ".zip) in application assets...");
                 // Check for "osd.traineddata.zip"
-                osdInstallSuccess = installFromAssets(CaptureActivity.OSD_FILENAME_BASE + ".zip",
-                        tessdataDir, new File(CaptureActivity.OSD_FILENAME));
+                osdInstallSuccess = installFromAssets(ScanOCR_Activity.OSD_FILENAME_BASE + ".zip",
+                        tessdataDir, new File(ScanOCR_Activity.OSD_FILENAME));
             } catch (IOException e) {
                 Log.e(TAG, "IOException", e);
             } catch (Exception e) {
@@ -252,10 +252,10 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
 
             if (!osdInstallSuccess) {
                 // File was not packaged in assets, so download it
-                Log.d(TAG, "Downloading " + CaptureActivity.OSD_FILENAME + ".gz...");
+                Log.d(TAG, "Downloading " + ScanOCR_Activity.OSD_FILENAME + ".gz...");
                 try {
-                    osdInstallSuccess = downloadFile(CaptureActivity.OSD_FILENAME, new File(tessdataDir,
-                            CaptureActivity.OSD_FILENAME));
+                    osdInstallSuccess = downloadFile(ScanOCR_Activity.OSD_FILENAME, new File(tessdataDir,
+                            ScanOCR_Activity.OSD_FILENAME));
                     if (!osdInstallSuccess) {
                         Log.e(TAG, "Download failed");
                         return false;
@@ -268,7 +268,7 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
 
             // Untar the OSD tar file
             try {
-                untar(new File(tessdataDir.toString() + File.separator + CaptureActivity.OSD_FILENAME),
+                untar(new File(tessdataDir.toString() + File.separator + ScanOCR_Activity.OSD_FILENAME),
                         tessdataDir);
             } catch (IOException e) {
                 Log.e(TAG, "Untar failed");
@@ -328,7 +328,7 @@ public final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
     private boolean downloadFile(String sourceFilenameBase, File destinationFile)
             throws IOException {
         try {
-            return downloadGzippedFileHttp(new URL(CaptureActivity.DOWNLOAD_BASE + sourceFilenameBase +
+            return downloadGzippedFileHttp(new URL(ScanOCR_Activity.DOWNLOAD_BASE + sourceFilenameBase +
                             ".gz"),
                     destinationFile);
         } catch (MalformedURLException e) {

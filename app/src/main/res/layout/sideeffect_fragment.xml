@@ -10,17 +10,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:paddingLeft="16dp"
-            android:paddingTop="32dp"
-            android:text="@string/general_symptom"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/general_symptom"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageButton
+                android:id="@+id/btnTTS_SideEffect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#3F51B5"
+                android:contentDescription="@string/text_to_speech"
+                android:src="@drawable/ic_record_voice_over_blue_24dp"
+                android:text="@string/text_to_speech"
+                android:textAppearance="?android:attr/textAppearance" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvGeneralSymptom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingTop="16dp" />
@@ -35,9 +53,10 @@
 
         <TextView
             android:id="@+id/tvBadSymptom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingTop="16dp" />
+
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

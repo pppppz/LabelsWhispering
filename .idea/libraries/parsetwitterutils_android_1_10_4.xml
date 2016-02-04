@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="parsetwitterutils-android-1.10.4">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.parse/parsetwitterutils-android/1.10.4/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.parse/parsetwitterutils-android/1.10.4/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.parse/parsetwitterutils-android/1.10.4/9173633469d81d28e23c1b172b5adfe1ca029025/parsetwitterutils-android-1.10.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

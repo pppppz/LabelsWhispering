@@ -67,8 +67,8 @@ public class Medicine extends ParseObject {
         put("Bedtime", bedtime);
     }
 
-    public String getType() {
-        return getString("Type");
+    public int getType() {
+        return getInt("Type");
     }
 
     public void setType(String type) {
@@ -79,55 +79,32 @@ public class Medicine extends ParseObject {
         return getString("badSymptom");
     }
 
-    public void setBadSymptom(String badSymptom) {
-        put("badSymptom", badSymptom);
-    }
-
     public String getGeneralSymptom() {
         return getString("generalSymptom");
     }
 
-    public void setGeneralSymptom(String generalSymptom) {
-        put("generalSymptom", generalSymptom);
+    public String getUseFor() {
+        return getString("UseFor");
     }
 
-    public JSONArray getUseFor() {
-        return getJSONArray("UseFor");
+    public String getTellDoctor() {
+        return getString("tellDoctor");
     }
 
-    public void setUseFor(JSONArray useFor) {
-        put("UseFor", useFor);
+    public String getIfForget() {
+        return getString("ifForget");
     }
 
-    public JSONArray getTellDoctor() {
-        return getJSONArray("tellDoctor");
+    public String getHowKeep() {
+        return getString("howKeep");
     }
 
-    public void setTellDoctor(JSONArray tellDoctor) {
-        put("tellDoctor", tellDoctor);
+
+    public String getHowTake() {
+        return getString("HowTake");
     }
 
-    public JSONArray getIfForget() {
-        return getJSONArray("ifForget");
-    }
-
-    public void setIfForget(JSONArray ifForget) {
-        put("ifForget", ifForget);
-    }
-
-    public JSONArray getHowKeep() {
-        return getJSONArray("howKeep");
-    }
-
-    public void setHowKeep(JSONArray howKeep) {
-        put("howKeep", howKeep);
-    }
-
-    public JSONArray getHowTake() {
-        return getJSONArray("HowTake");
-    }
-
-    public void setHowTake(JSONArray howTake) {
+    public void setHowTake(String howTake) {
         put("HowTake", howTake);
     }
 

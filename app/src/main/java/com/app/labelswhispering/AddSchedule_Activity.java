@@ -3,7 +3,6 @@ package com.app.labelswhispering;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
@@ -13,11 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.app.labelswhispering.Model.Medicine;
@@ -49,7 +45,7 @@ public class AddSchedule_Activity extends AppCompatActivity {
         setContentView(R.layout.add_schedule_fm);
 
         //Finally, let's add the Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.add_schedule_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.schedule_toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -71,45 +67,33 @@ public class AddSchedule_Activity extends AppCompatActivity {
     private void makeUI() {
 
         //lunch spinner
-        lunch = (Spinner) findViewById(R.id.spinner_lunch);
+     /*   lunch = (Spinner) findViewById(R.id.spinner_lunch);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lunch, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lunch.setAdapter(adapter);
+        lunch.setAdapter(adapter);*/
 
         //type amount spinner
-        amount = (Spinner) findViewById(R.id.spinner_amounttype);
+      /*  amount = (Spinner) findViewById(R.id.spinner_amounttype);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.amount, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        amount.setAdapter(adapter2);
-
-
+        amount.setAdapter(adapter2);*/
+/*
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group_type);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
             }
-        });
-        AmountED = (EditText) findViewById(R.id.ed_amount);
+        });*/
+    /*    AmountED = (EditText) findViewById(R.id.ed_amount);
         Morning = (CheckBox) findViewById(R.id.cb_morning);
         Noon = (CheckBox) findViewById(R.id.cb_noon);
         Evening = (CheckBox) findViewById(R.id.cb_evening);
-        Bedtime = (CheckBox) findViewById(R.id.cb_bedtime);
-
-
-        String[] test = {"read", "red", "road"};
-        //Creating the instance of ArrayAdapter containing list of language names
-        ArrayAdapter<String> adapter_autocomplete = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, test);
-        //Getting the instance of AutoCompleteTextView
-        actv = (AppCompatAutoCompleteTextView) findViewById(R.id.ac_nameMedicine);
-        actv.setThreshold(1);//will start working from first character
-        actv.setAdapter(adapter_autocomplete);//setting the adapter data into the AutoCompleteTextView
-        actv.setTextColor(Color.RED);
-
+        Bedtime = (CheckBox) findViewById(R.id.cb_bedtime);*/
 
     }
 
-
+/*
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -128,7 +112,7 @@ public class AddSchedule_Activity extends AppCompatActivity {
                     Log.e(TAG, "radio liquid click");
                 break;
         }
-    }
+    }*/
 
 
     @Override

@@ -22,8 +22,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.app.labelswhispering.CaptureActivity;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.ScanOCR_Activity;
 
 import edu.sfsu.cs.orange.ocr.camera.CameraManager;
 
@@ -36,11 +36,11 @@ public final class CaptureActivityHandler extends Handler {
 
     private static final String TAG = CaptureActivityHandler.class.getSimpleName();
     private static State state;
-    private final CaptureActivity activity;
+    private final ScanOCR_Activity activity;
     private final DecodeThread decodeThread;
     private final CameraManager cameraManager;
 
-    public CaptureActivityHandler(CaptureActivity activity, CameraManager cameraManager, boolean isContinuousModeActive) {
+    public CaptureActivityHandler(ScanOCR_Activity activity, CameraManager cameraManager, boolean isContinuousModeActive) {
         this.activity = activity;
         this.cameraManager = cameraManager;
 
@@ -94,6 +94,7 @@ public final class CaptureActivityHandler extends Handler {
                     activity.handleOcrContinuousDecode((OcrResult) message.obj);
                 } catch (NullPointerException e) {
                     // Continue
+                    Log.e(TAG, "npe : " + e);
                 }
                 if (state == State.CONTINUOUS) {
                     restartOcrPreviewAndDecode();
