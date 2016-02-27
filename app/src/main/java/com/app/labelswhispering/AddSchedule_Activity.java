@@ -1,42 +1,51 @@
 package com.app.labelswhispering;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.PopupWindow;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import com.app.labelswhispering.Model.Medicine;
+import com.app.labelswhispering.Adapter.TypeAdapter;
+import com.app.labelswhispering.Function.DividerItemDecoration;
+import com.app.labelswhispering.Listener.RecyclerItemClickListener;
 import com.app.labelswhispering.Model.Schedule;
-import com.parse.FindCallback;
-import com.parse.ParseACL;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Locale;
 
 public class AddSchedule_Activity extends AppCompatActivity {
 
     private static final String TAG = AddSchedule_Activity.class.getSimpleName();
-    private Spinner amount, lunch;
-    private EditText AmountED;
-    private CheckBox Morning, Noon, Evening, Bedtime;
-    private List<Medicine> medicineList = new ArrayList<>();
-    private AppCompatAutoCompleteTextView actv;
+    private SwitchCompat switch_alert;
+    private CheckBox Morning, Noon, Evening, Bedtime, beforeMeal, afterMeal;
+    private EditText editText_NameMedicine, editTextAmount;
+    private int popup_type_medicine;
+    private TextView tvMedicineType;
+    private ArrayAdapter<CharSequence> adapter;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private CoordinatorLayout rootLayout;
+    private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,21 @@ public class AddSchedule_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_schedule_fm);
 
+        String locale_lang = Locale.getDefault().getDisplayLanguage();
+        if (locale_lang.equals("th") || locale_lang.equals("???")) {
+            adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.medicine_type_th, android.R.layout.simple_spinner_item);
+        } else {
+            adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.medicine_type, android.R.layout.simple_spinner_item);
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        makeUI();
+        setDataToUI();
+
+
+    }
+
+
+    private void makeUI() {
         //Finally, let's add the Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.schedule_toolbar);
         setSupportActionBar(toolbar);
@@ -59,66 +83,66 @@ public class AddSchedule_Activity extends AppCompatActivity {
                 finish();
             }
         });
-        makeUI();
 
-    }
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout_schedule_detail);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar_schedule);
+
+        editText_NameMedicine = (EditText) findViewById(R.id.et_nameMedicine);
+        editTextAmount = (EditText) findViewById(R.id.ed_amount);
+
+        tvMedicineType = (TextView) findViewById(R.id.txtMedicineType);
 
 
-    private void makeUI() {
-
-        //lunch spinner
-     /*   lunch = (Spinner) findViewById(R.id.spinner_lunch);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lunch, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lunch.setAdapter(adapter);*/
-
-        //type amount spinner
-      /*  amount = (Spinner) findViewById(R.id.spinner_amounttype);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.amount, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        amount.setAdapter(adapter2);*/
-/*
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group_type);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // checkedId is the RadioButton selected
-            }
-        });*/
-    /*    AmountED = (EditText) findViewById(R.id.ed_amount);
         Morning = (CheckBox) findViewById(R.id.cb_morning);
         Noon = (CheckBox) findViewById(R.id.cb_noon);
         Evening = (CheckBox) findViewById(R.id.cb_evening);
-        Bedtime = (CheckBox) findViewById(R.id.cb_bedtime);*/
+        Bedtime = (CheckBox) findViewById(R.id.cb_bedtime);
+
+        switch_alert = (SwitchCompat) findViewById(R.id.switch_alert);
+
+        beforeMeal = (CheckBox) findViewById(R.id.checkBox_BeforeMeal);
+        afterMeal = (CheckBox) findViewById(R.id.checkBox_afterMeal);
+
+        LinearLayoutCompat linearLayoutCompat_MedicineType = (LinearLayoutCompat) findViewById(R.id.ll_medicine_type);
+        linearLayoutCompat_MedicineType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                final View popupView = layoutInflater.inflate(R.layout.popup_medicine_type, null);
+
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                mRecyclerView = (RecyclerView) popupView.findViewById(R.id.recycler_view_type);
+                mRecyclerView.addItemDecoration(new DividerItemDecoration(getBaseContext(), R.drawable.divider));
+
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
+                mRecyclerView.setLayoutManager(mLayoutManager);
+
+                /** create adapter for put on array from class schedule **/
+                mAdapter = new TypeAdapter(getBaseContext(), adapter);
+                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setHasFixedSize(true);
+                mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        popup_type_medicine = position;
+                        Log.e(TAG, "type medicine " + popup_type_medicine);
+                        tvMedicineType.setText(adapter.getItem(popup_type_medicine));
+                        popupWindow.dismiss();
+                    }
+                }));
+                popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+            }
+
+        });
 
     }
-
-/*
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radio_tablet:
-                if (checked)
-
-                    Log.e(TAG, "radio tablet click");
-                //liquid.toggle();
-                break;
-            case R.id.radio_liquid:
-                if (checked)
-                    //tablet.toggle();
-                    Log.e(TAG, "radio liquid click");
-                break;
-        }
-    }*/
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.save_menu, menu);
+        getMenuInflater().inflate(R.menu.add_schedule, menu);
         return true;
     }
 
@@ -126,12 +150,6 @@ public class AddSchedule_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
     }
 
 
@@ -145,89 +163,52 @@ public class AddSchedule_Activity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        queryAutoComplete();
     }
 
 
     private void SaveSchedule() {
 
-        if (actv.getText().length() > 0) {
-
-            int amount_to_save = 0;
-
-            /**  Set up a progress dialog **/
-            final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setMessage("updating please wait");
-            dialog.show();
-
-            /** get data from task_input and set data by method in Current.class **/
-            Schedule s = new Schedule();
-            s.setACL(new ParseACL(ParseUser.getCurrentUser()));
-            s.setUser(ParseUser.getCurrentUser());
-            s.setName(actv.getText().toString());
-
-            if (AmountED.getText() == null) {
-                amount_to_save = Integer.parseInt(AmountED.getText().toString());
-            }
-
-            s.setAmount(amount_to_save);
+        Schedule s = new Schedule();
+        if (editText_NameMedicine.getText() != null) {
+            s.setName(String.valueOf(editText_NameMedicine.getText()));
+            s.setAlert(switch_alert.isChecked());
+            s.setAmount(Integer.parseInt(editTextAmount.getText().toString()));
             s.setMorning(Morning.isChecked());
             s.setNoon(Noon.isChecked());
             s.setEvening(Evening.isChecked());
             s.setBedtime(Bedtime.isChecked());
-
-            if (lunch.getSelectedItemId() == 0) {
-                s.setBeforeMeal(true);
-            } else {
-                s.setBeforeMeal(false);
-            }
-            s.setAmount(amount.getSelectedItemPosition() + 1);
-            s.pinInBackground();
-
+            s.setBeforeMeal(beforeMeal.isChecked());
+            s.setAfterMeal(afterMeal.isChecked());
+            s.setType(popup_type_medicine);
             s.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
+                    if (e == null) {
+                        Snackbar.make(rootLayout, R.string.schedule_saved, Snackbar.LENGTH_LONG).show();
+                        finish();
+                    } else {
+                        Log.e(TAG, "save error " + e.getLocalizedMessage());
+                    }
 
-                    /** hidden soft keyboard before swap fragment **/
-                    InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputManager.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                    dialog.dismiss();
-
-
-                    /** finish this class and swap to Main class **/
-                    finish();
                 }
             });
+        } else {
+            Snackbar.make(rootLayout, R.string.please_check_again, Snackbar.LENGTH_LONG).show();
         }
 
     }
 
-    private void queryAutoComplete() {
-
-        //pattern query
-        ParseQuery<Medicine> query = ParseQuery.getQuery(Medicine.class);
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
-        query.addDescendingOrder("createdAt");
-        query.findInBackground(new FindCallback<Medicine>() {
-            @Override
-            public void done(List<Medicine> items, ParseException error) {
-                //check if list task have some data = clear
-                medicineList.clear();
-                if (error == null) {
-                    for (int i = 0; i < items.size(); i++) {
-                        medicineList.add(items.get(i));
-                    }
-                } else {
-                    Log.e("ParseException : ", String.valueOf(error));
-                }
-
-
-            }
-        });
-
+    private void setDataToUI() {
+        tvMedicineType.setText(adapter.getItem(0));
+        switch_alert.setChecked(true);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
+
 }
+
+

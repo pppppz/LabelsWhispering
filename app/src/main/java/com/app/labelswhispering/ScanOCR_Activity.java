@@ -57,10 +57,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.labelswhispering.DetailFragment.Main_Medicine_Details_Activity;
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
-import com.app.labelswhispering.Preference.SettingsActivity;
+import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
+import com.app.labelswhispering.preference.SettingsActivity;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.googlecode.tesseract.android.TessBaseAPI;
@@ -257,7 +257,7 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
             setDefaultPreferences();
         }
 
-        if (!new isNetworkConnected(this).CheckNow()) {
+        if (!new isNetworkConnected().Check(this)) {
             Toast.makeText(this, "Please check your connection.", Toast.LENGTH_LONG).show();
             finish();
         }
@@ -763,8 +763,7 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
         ImageView bitmapImageView = (ImageView) findViewById(R.id.image_view);
         Bitmap lastBitmap = ocrResult.getBitmap();
         if (lastBitmap == null) {
-            bitmapImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
-                    R.drawable.ic_launcher));
+            bitmapImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         } else {
             bitmapImageView.setImageBitmap(lastBitmap);
         }
@@ -1030,6 +1029,9 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
         }
     }
 
+    /**
+     * @param visible
+     */
     @SuppressWarnings("unused")
     public void setButtonVisibility(boolean visible) {
         if (shutterButton != null && visible == true && DISPLAY_SHUTTER_BUTTON) {

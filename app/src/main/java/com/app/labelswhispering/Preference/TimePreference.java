@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Preference;
+package com.app.labelswhispering.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;

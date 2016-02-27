@@ -191,19 +191,19 @@
             android:textColor="@color/status_text"
             android:textSize="14sp" />
 
-        <ToggleButton
-            android:id="@+id/torch_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/ic_flash_off_white_24dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="right|top"
-            android:scaleType="center"
-            android:textOff=""
-            android:textOn="" />
+        <!--  <ToggleButton
+              android:id="@+id/torch_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentTop="true"
+              android:background="@drawable/ic_flash_off_white_24dp"
+              android:clickable="true"
+              android:focusable="true"
+              android:gravity="right|top"
+              android:scaleType="center"
+              android:textOff=""
+              android:textOn="" /> -->
 
     </RelativeLayout>
 

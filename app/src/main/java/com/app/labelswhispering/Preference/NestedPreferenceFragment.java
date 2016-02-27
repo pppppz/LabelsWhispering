@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Preference;
+package com.app.labelswhispering.preference;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;

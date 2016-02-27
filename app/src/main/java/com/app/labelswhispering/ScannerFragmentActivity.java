@@ -13,7 +13,7 @@ public class ScannerFragmentActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        if (!new isNetworkConnected(this).CheckNow()) {
+        if (!new isNetworkConnected().Check(this)) {
             Toast.makeText(this, R.string.please_check_your_connection, Toast.LENGTH_LONG).show();
             finish();
         }

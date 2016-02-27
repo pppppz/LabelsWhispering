@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Service;
+package com.app.labelswhispering.service;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -31,13 +31,13 @@ public class AlarmActivity extends Activity {
 
     private static final String POSITION = "Position";
     private static final String ORIGINAL_VOLUME = "OriginalVolume";
-    private final String TAG = AlarmActivity.class.getSimpleName();
     TextView tvListMedicineName;
     private Vibrator vibrator;
     private MediaPlayer m_MediaPlayer;
     private int m_iPosition;
     private int m_iOriginalAlarmVolume;
     private SharedPreferences sharedPrefs;
+    private String TAG = AlarmActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

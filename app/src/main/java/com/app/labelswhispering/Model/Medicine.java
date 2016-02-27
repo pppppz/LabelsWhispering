@@ -35,6 +35,10 @@ public class Medicine extends ParseObject {
         put("BeforeMeal", beforeMeal);
     }
 
+    public boolean isAfterMeal() {
+        return getBoolean("AfterMeal");
+    }
+
     public boolean isMorning() {
         return getBoolean("Morning");
     }
@@ -101,11 +105,11 @@ public class Medicine extends ParseObject {
 
 
     public String getHowTake() {
-        return getString("HowTake");
+        return getString("howTake");
     }
 
     public void setHowTake(String howTake) {
-        put("HowTake", howTake);
+        put("howTake", howTake);
     }
 
     public int getAmount() {

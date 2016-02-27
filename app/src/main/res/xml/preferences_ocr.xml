@@ -3,7 +3,7 @@
     android:title="OCR Settings">
 
     <!-- GENERAL SETTINGS -->
-    <PreferenceCategory android:title="General settings">
+    <PreferenceCategory android:title="@string/general_settings">
 
         <!-- <CheckBoxPreference
              android:entries="@array/capturemodes"
@@ -14,34 +14,34 @@
             android:entries="@array/languagenames"
             android:entryValues="@array/iso6393"
             android:key="sourceLanguageCodeOcrPref"
-            android:title="Recognize" />
+            android:title="@string/recognize" />
     </PreferenceCategory>
 
 
     <!-- ADVANCED SETTINGS -->
-    <PreferenceCategory android:title="Advanced settings">
+    <PreferenceCategory android:title="@string/advance_settings">
 
         <ListPreference
             android:defaultValue="Both"
             android:entries="@array/ocrenginemodes"
             android:entryValues="@array/ocrenginemodes"
             android:key="preference_ocr_engine_mode"
-            android:title="OCR engine" />
+            android:title="@string/ocr_engine" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="preferences_auto_focus"
-            android:title="Autofocus" />
+            android:title="@string/auto_focus" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="preferences_disable_continuous_focus"
-            android:title="Standard focus mode" />
+            android:title="@string/standard_focus_mode" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="preference_toggle_light"
-            android:title="Toggle Flash" />
+            android:title="@string/toggle_flash" />
 
         <!--  <CheckBoxPreference
               android:key="preferences_play_beep"
@@ -60,7 +60,7 @@
             android:entries="@array/pagesegmentationmodes"
             android:entryValues="@array/pagesegmentationmodes"
             android:key="preference_page_segmentation_mode"
-            android:title="Page segmentation" />
+            android:title="@string/page_segmentation" />
 
         <!--  <CheckBoxPreference
               android:key="preferences_reverse_image"

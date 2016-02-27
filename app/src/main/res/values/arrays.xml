@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="listTime">
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>1 Hours</item>
+        <item>2 Hours</item>
+        <item>6 Hours</item>
+        <item>12 Hours</item>
+        <item>1 Day</item>
+    </string-array>
+    <string-array name="listValuesTime">
+        <item>AlarmManager.INTERVAL_FIFTEEN_MINUTES</item>
+        <item>AlarmManager.INTERVAL_HALF_HOUR</item>
+        <item>AlarmManager.INTERVAL_HOUR</item>
+        <item>AlarmManager.INTERVAL_HOUR*2</item>
+        <item>AlarmManager.INTERVAL_HOUR*6</item>
+        <item>AlarmManager.INTERVAL_HOUR*12</item>
+        <item>AlarmManager.INTERVAL_DAY</item>
+    </string-array>
+
+    <string-array name="ocrenginemodes">
+        <item>Tesseract</item>
+        <item>Cube</item>
+        <item>Both</item>
+    </string-array>
+
+    <string-array name="pagesegmentationmodes">
+        <item>Auto</item>
+        <item>Auto (no OSD)</item>
+        <item>Single block</item>
+        <item>Single character</item>
+        <item>Single column</item>
+        <item>Single line</item>
+        <item>Single word</item>
+        <item>Vertical block</item>
+        <item>Sparse text</item>
+    </string-array>
+
+
+    <string-array name="extraRingtones">
+        <item>remind_en</item>
+        <item>remind_th</item>
+    </string-array>
+
+    <string-array name="extraRingtoneTitles">
+        <item>English</item>
+        <item>ภาษาไทย</item>
+    </string-array>
+
+    <!-- The elements in this array must match to the iso6393 array. -->
+    <string-array name="languagenames">
+        <item>English</item>
+        <item>Thai</item>
+    </string-array>
+
+    <!-- The elements in this array must match to the languagenames array. -->
+    <string-array name="iso6393">
+        <item>eng</item> <!-- English -->
+        <item>tha</item> <!-- Thai -->
+    </string-array>
+
+    <string-array name="capturemodes">
+        <item>Continuous</item>
+        <item>Single shot</item>
+    </string-array>
+
+    <string-array name="medicine_type">
+        <item>Liquid/Syrup</item>
+        <item>Tablet</item>
+        <item>Capsule</item>
+        <item>Lozenges</item>
+        <item>Cream/Ointment</item>
+        <item>Drops</item>
+        <item>Spray</item>
+    </string-array>
+
+    <string-array name="medicine_type_th">
+        <item>น้ำ</item>
+        <item>เม็ด</item>
+        <item>แคปซูล</item>
+        <item>อม</item>
+        <item>ครีม/ขี้ผึ้ง</item>
+        <item>หยด</item>
+        <item>สเปรย์</item>
+    </string-array>
+
+    <string-array name="lunch">
+        <item>Before</item>
+        <item>After</item>
+    </string-array>
+
+    <!-- toolbar list -->
+    <string-array name="toolbar_items">
+        <item>Medicine box</item>
+        <item>Schedule</item>
+        <item>User</item>
+    </string-array>
+
+    <!-- toolbar list -->
+    <string-array name="toolbar_items_th">
+        <item>กล่องยา</item>
+        <item>ตารางทานยา</item>
+        <item>ส่วนของผู้ใช้</item>
+    </string-array>
+
+    <!-- toolbar list -->
+    <string-array name="toolbar_items_detail">
+        <item>Property</item>
+        <item>How to take</item>
+        <item>If forget</item>
+        <item>Side Effect</item>
+        <item>How to keep</item>
+        <item>Pictures</item>
+    </string-array>
+
+    <array name="white_icons">
+        <item>@drawable/ic_medicine_box_white_24dp</item>
+        <item>@drawable/ic_schedule_white_24dp</item>
+        <item>@drawable/ic_menu_white_24dp</item>
+    </array>
+
+    <array name="gray_icons">
+        <item>@drawable/ic_medicine_box_gray_24dp</item>
+        <item>@drawable/ic_schedule_gray_24dp</item>
+        <item>@drawable/ic_menu_gray_24dp</item>
+    </array>
+</resources>

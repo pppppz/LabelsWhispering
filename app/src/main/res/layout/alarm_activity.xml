@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Service.AlarmActivity">
+    tools:context=".service.AlarmActivity">
 
     <TextView
         android:id="@+id/textView4"
@@ -49,9 +49,9 @@
                 android:layout_centerInParent="true"
                 android:focusableInTouchMode="false"
                 app:ringbutton_downDrawable="@drawable/ic_done_blue_48dp"
-                app:ringbutton_downText="I'm done."
+                app:ringbutton_downText="@string/im_done"
                 app:ringbutton_upDrawable="@drawable/ic_refresh_blue_48dp"
-                app:ringbutton_upText="Snooze later." />
+                app:ringbutton_upText="@string/snooze_later" />
 
         </com.skyfishjy.library.RippleBackground>
     </RelativeLayout>

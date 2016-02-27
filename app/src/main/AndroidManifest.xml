@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.labelswhispering">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.screen.landscape" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.WithoutActionBar">
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/log_in" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/register" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".preference.SettingsActivity"
+            android:label="@string/settings" />
+        <activity
+            android:name=".FacebookLoginActivity"
+            android:label="@string/facebook_login" />
+        <activity
+            android:name=".TwitterLoginActivity"
+            android:label="@string/twitter_login" />
+        <activity
+            android:name=".AddSchedule_Activity"
+            android:label="@string/add_schedule" />
+
+        <activity android:name=".detail_fragment.DisplayImg_Activity" />
+        <activity
+            android:name=".ScannerFragmentActivity"
+            android:label="@string/scan_barcode" />
+        <activity android:name=".ScanOCR_Activity" />
+        <activity
+            android:name=".User_Edit_Activity"
+            android:label="@string/user" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/home"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".More_detail"
+            android:label="@string/title_activity_detail__time2_eat"
+            android:theme="@style/AppTheme.WithoutActionBar" />
+
+        <activity
+            android:name=".Edit_Schedule"
+            android:label="@string/edit_schedule" />
+        <activity
+            android:name=".NotificationActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity="" />
+
+        <activity android:name="edu.sfsu.cs.orange.ocr.HelpActivity" />
+
+        <activity
+            android:name=".ReportActivity"
+            android:label="@string/report_problem" />
+
+
+        <activity android:name=".service.AlarmActivity" />
+        <activity
+            android:name=".detail_fragment.Main_Medicine_Details_Activity"
+            android:label="Detail" />
+        <activity
+            android:name=".SearchActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <!-- splash screen first page -->
+        <activity
+            android:name=".MainSplashScreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".service.MyAlarmReceiver"
+            android:process=":remote" />
+
+        <service
+            android:name=".service.CheckScheduleService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="554194348079649" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+    </application>
+
+</manifest>

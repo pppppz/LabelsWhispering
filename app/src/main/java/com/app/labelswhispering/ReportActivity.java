@@ -23,8 +23,26 @@ public class ReportActivity extends AppCompatActivity {
     private String TAG = ReportActivity.class.getSimpleName();
     private EditText edReportProblem;
     private TextView tvCountChar;
-    private LinearLayout rootReport;
+    TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            int finalCal = 500 - (edReportProblem.getText().toString().length());
+            tvCountChar.setText(finalCal + getString(R.string.characters_left));
+            tvCountChar.setTextColor(getResources().getColor(R.color.warning_color));
+
+        }
+    };
+    private LinearLayout rootReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +53,7 @@ public class ReportActivity extends AppCompatActivity {
 
         tvCountChar = (TextView) findViewById(R.id.tvCountChar);
         edReportProblem = (EditText) findViewById(R.id.etReportProblem);
-        edReportProblem.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                int finalCal = 500 - (edReportProblem.getText().toString().length());
-                tvCountChar.setText(finalCal + getString(R.string.characters_left));
-                tvCountChar.setTextColor(getResources().getColor(R.color.warning_color));
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
+        edReportProblem.addTextChangedListener(textWatcher);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -101,7 +107,6 @@ public class ReportActivity extends AppCompatActivity {
                     } else {
                         Log.e(TAG, "error save report : " + e.getLocalizedMessage());
                     }
-
                 }
             });
         } else {
@@ -110,7 +115,6 @@ public class ReportActivity extends AppCompatActivity {
 
 
     }
-
 
     @Override
     public void onBackPressed() {

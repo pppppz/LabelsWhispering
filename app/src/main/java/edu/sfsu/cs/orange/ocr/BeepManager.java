@@ -25,9 +25,9 @@ import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.app.labelswhispering.Preference.SettingsActivity;
 import com.app.labelswhispering.R;
 import com.app.labelswhispering.ScanOCR_Activity;
+import com.app.labelswhispering.preference.SettingsActivity;
 
 import java.io.IOException;
 

@@ -15,8 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.labelswhispering.DetailFragment.Main_Medicine_Details_Activity;
 import com.app.labelswhispering.Model.Barcode;
+import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.google.zxing.Result;
 import com.parse.FindCallback;
 import com.parse.ParseException;

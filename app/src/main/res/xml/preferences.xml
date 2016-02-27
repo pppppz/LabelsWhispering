@@ -2,24 +2,24 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="Specific settings">
+    <PreferenceCategory android:title="@string/spectific_settings">
 
         <Preference
             android:key="TIME_KEY"
             android:persistent="false"
-            android:title="Time settings" />
+            android:title="@string/time_settings" />
 
         <Preference
             android:key="OCR_KEY"
             android:persistent="false"
-            android:title="OCR Settings" />
+            android:title="@string/ocr_settings" />
     </PreferenceCategory>
 
     <PreferenceCategory
         android:summary="@string/PreferenceAlarmSettings"
         android:title="@string/PreferenceAlarmSettings">
 
-        <com.app.labelswhispering.Preference.ExtraRingtonePreference
+        <com.app.labelswhispering.preference.ExtraRingtonePreference
             android:defaultValue="content://settings/system/notification_sound"
             android:key="ringtone"
             android:summary="@string/ringtoneSummary"
@@ -29,13 +29,13 @@
             app:ringtoneType="notification"
             app:showDefault="true"
             app:showSilent="true" />
-        <RingtonePreference
-            android:defaultValue="content://settings/system/notification_sound"
-            android:key="@string/PreferenceAlarmNoiseKey"
-            android:ringtoneType="notification|ringtone"
-            android:showDefault="true"
-            android:showSilent="false"
-            android:title="@string/PreferenceAlarmNoiseTitle" />
+        <!--     <RingtonePreference
+                 android:defaultValue="content://settings/system/notification_sound"
+                 android:key="@string/PreferenceAlarmNoiseKey"
+                 android:ringtoneType="notification|ringtone"
+                 android:showDefault="true"
+                 android:showSilent="false"
+                 android:title="@string/PreferenceAlarmNoiseTitle" /> -->
         <EditTextPreference
             android:defaultValue="2"
             android:key="@string/PreferenceSnoozeLater"
@@ -51,7 +51,7 @@
             android:defaultValue="true"
             android:key="vibrate"
             android:summary="@string/summary_vibrate"
-            android:title="Vibrate" />
+            android:title="@string/vibrate" />
     </PreferenceCategory>
 
 </PreferenceScreen>

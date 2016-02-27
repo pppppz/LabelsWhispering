@@ -20,12 +20,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.app.labelswhispering.Adapter.ListMedicineAdapter;
-import com.app.labelswhispering.DetailFragment.Main_Medicine_Details_Activity;
+import com.app.labelswhispering.Adapter.MedicineAdapter;
 import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Function.RecyclerItemClickListener;
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
+import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -39,11 +39,25 @@ public class SearchActivity extends AppCompatActivity {
     public static LinearLayoutManager layoutManager;
     private final String TAG = SearchActivity.class.getSimpleName();
     private List<Medicine> medicineList = new ArrayList<>();
+    RecyclerItemClickListener recyclerItemClickListener = new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            String medicineID = medicineList.get(position).getObjectId();
+            String medicineName = medicineList.get(position).getName();
+            Log.e(TAG, "objectId : " + medicineID);
+            Intent intent = new Intent(SearchActivity.this, Main_Medicine_Details_Activity.class);
+            intent.putExtra("medicineID", medicineID);
+            intent.putExtra("medicineName", medicineName);
+            intent.putExtra("flag", "search");
+            startActivity(intent);
+            finish();
+
+        }
+    });
     private SearchView searchView;
     private TextView tvShowNoResults, tvShowTxtNumberOfResults;
     private CoordinatorLayout rootLayout_search;
     private ProgressBar progressBar;
-
     private RecyclerView.Adapter mAdapter;
 
     @Override
@@ -53,7 +67,6 @@ public class SearchActivity extends AppCompatActivity {
         handleIntent(getIntent());
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_search);
-
         rootLayout_search = (CoordinatorLayout) findViewById(R.id.rootLayout_Search);
         Toolbar toolbar_search = (Toolbar) findViewById(R.id.toolbar_search);
         setSupportActionBar(toolbar_search);
@@ -73,28 +86,13 @@ public class SearchActivity extends AppCompatActivity {
         layoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
 
         /** create adapter for put on array from class schedule **/
-        mAdapter = new ListMedicineAdapter(this, medicineList);
+        mAdapter = new MedicineAdapter(this, medicineList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
 
         /**set list view can listen the event when click some row **/
-        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                String medicineID = medicineList.get(position).getObjectId();
-                String medicineName = medicineList.get(position).getName();
-                Log.e(TAG, "objectId : " + medicineID);
-                Intent intent = new Intent(SearchActivity.this, Main_Medicine_Details_Activity.class);
-                intent.putExtra("medicineID", medicineID);
-                intent.putExtra("medicineName", medicineName);
-                intent.putExtra("flag", "search");
-
-                startActivity(intent);
-                finish();
-            }
-        }));
+        mRecyclerView.addOnItemTouchListener(recyclerItemClickListener);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,7 +144,7 @@ public class SearchActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String word = intent.getStringExtra(SearchManager.QUERY);
-            doMySearch(word);
+            Search_Process(word);
         }
     }
 
@@ -156,12 +154,12 @@ public class SearchActivity extends AppCompatActivity {
         finish();
     }
 
-    private void doMySearch(String word) {
+    private void Search_Process(String word) {
         progressBar.setVisibility(View.VISIBLE);
 
         searchView.setQuery(word, false);
 
-        if (new isNetworkConnected(this).CheckNow()) {
+        if (new isNetworkConnected().Check(this)) {
             //search
             ParseQuery<Medicine> query = ParseQuery.getQuery(Medicine.class);
             query.whereMatches("name", "(" + word + ")", "i");
@@ -177,7 +175,7 @@ public class SearchActivity extends AppCompatActivity {
                             for (int i = 0; i < items.size(); i++) {
                                 medicineList.add(items.get(i));
                             }
-                            tvShowTxtNumberOfResults.setText(R.string.about + " " + items.size() + " " + R.string.results);
+                            tvShowTxtNumberOfResults.setText(getString(R.string.about) + " " + items.size() + " " + getString(R.string.results));
                             tvShowTxtNumberOfResults.setVisibility(View.VISIBLE);
                         } else {
                             tvShowNoResults.setVisibility(View.VISIBLE);

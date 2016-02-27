@@ -4,12 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.app.labelswhispering.DetailFragment.HowKeep_Fragment;
-import com.app.labelswhispering.DetailFragment.HowToTake_Fragment;
-import com.app.labelswhispering.DetailFragment.If_Forget_Fragment;
-import com.app.labelswhispering.DetailFragment.Picture_Fragment;
-import com.app.labelswhispering.DetailFragment.Property_Fragment;
-import com.app.labelswhispering.DetailFragment.SideEffect_Fragment;
+import com.app.labelswhispering.detail_fragment.HowKeep_Fragment;
+import com.app.labelswhispering.detail_fragment.HowToTake_Fragment;
+import com.app.labelswhispering.detail_fragment.If_Forget_Fragment;
+import com.app.labelswhispering.detail_fragment.Picture_Fragment;
+import com.app.labelswhispering.detail_fragment.Property_Fragment;
+import com.app.labelswhispering.detail_fragment.SideEffect_Fragment;
 
 public class PagerInMoreDetailAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;

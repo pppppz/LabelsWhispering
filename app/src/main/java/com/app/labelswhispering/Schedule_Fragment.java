@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.app.labelswhispering.Adapter.ListScheduleAdapter;
+import com.app.labelswhispering.Adapter.ScheduleAdapter;
 import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Listener.RecyclerItemClickListener;
@@ -35,25 +35,23 @@ public class Schedule_Fragment extends Fragment {
     private FragmentActivity fragmentActivity;
     private SwipeRefreshLayout swipeRefresh;
     private List<Schedule> scheduleList = new ArrayList<>();
-    private RecyclerView.Adapter mAdapter;
-    private String TAG = Schedule_Fragment.class.getSimpleName();
     RecyclerItemClickListener recyclerItemClickListener = new RecyclerItemClickListener(fragmentActivity, new RecyclerItemClickListener.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
             try {
                 String scheduleID = scheduleList.get(position).getObjectId();
-                Log.e(TAG, "objectId : " + scheduleID);
-                Intent intent = new Intent(fragmentActivity, Detail_Schedule.class);
+                Intent intent = new Intent(fragmentActivity, Edit_Schedule.class);
                 intent.putExtra("scheduleId", scheduleID);
                 startActivity(intent);
             } catch (Exception e) {
                 Snackbar.make(MainActivity.rootLayout, R.string.try_again, Snackbar.LENGTH_SHORT).show();
-                Log.e(TAG, "onItemClick : " + e.getMessage());
             }
 
 
         }
     });
+    private RecyclerView.Adapter mAdapter;
+    //private String TAG = Schedule_Fragment.class.getSimpleName();
     private LinearLayout ll_alarm;
     SwipeRefreshLayout.OnRefreshListener pullToRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
@@ -83,13 +81,12 @@ public class Schedule_Fragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         /** create adapter for put on array from class schedule **/
-        mAdapter = new ListScheduleAdapter(fragmentActivity, scheduleList);
+        mAdapter = new ScheduleAdapter(fragmentActivity, scheduleList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addOnItemTouchListener(recyclerItemClickListener);
 
         /**set list view can listen the event when click some row **/
-        //  mRecyclerView.addOnScrollListener(new RecyclerViewOnScrollListener());
         swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container_location);
         swipeRefresh.setOnRefreshListener(pullToRefreshListener);
         return view;
@@ -167,7 +164,7 @@ public class Schedule_Fragment extends Fragment {
     private void Query() {
         MainActivity.progressBar.setVisibility(View.VISIBLE);
 
-        if (new isNetworkConnected(fragmentActivity).CheckNow()) {
+        if (new isNetworkConnected().Check(fragmentActivity)) {
             updateListOnLine();
         } else {
             updateListOffline();
