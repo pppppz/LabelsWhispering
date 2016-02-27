@@ -32,3 +32,5 @@ public class More_detail extends AppCompatActivity {
         manager.cancel(getIntent().getIntExtra(NOTIFICATION_ID, -1));
     }
 }
+
+
