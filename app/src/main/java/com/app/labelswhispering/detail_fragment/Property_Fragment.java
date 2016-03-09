@@ -57,7 +57,7 @@ public class Property_Fragment extends Fragment {
         Locale locale;
         String locale_lang = Locale.getDefault().getDisplayLanguage();
         Log.e(TAG, "Lang : " + locale_lang);
-        if (locale_lang.equals("th") || locale_lang.equals("???")) {
+        if (locale_lang.equals("th")) {
             locale = new Locale("th", "TH");
         } else {
             locale = Locale.US;
@@ -90,26 +90,5 @@ public class Property_Fragment extends Fragment {
         cbNoon.setChecked(Main_Medicine_Details_Activity.medicineList.get(0).isAfterNoon());
         cbEvening.setChecked(Main_Medicine_Details_Activity.medicineList.get(0).isEvening());
         cbBedtime.setChecked(Main_Medicine_Details_Activity.medicineList.get(0).isBedtime());
-
-
-           /* JSONArray property = MedicineDetail_Activity.medicineList.get(0).getUseFor();
-            if (property != null) {
-                int length = property.length();
-                if (length != 0) {
-                    for (int i = 0; i < length; i++) {
-                        try {
-                            if (tvProperty != null) {
-                                tvProperty.append("-" + property.get(i).toString() + "\n");
-                            } else {
-                                Log.e(TAG, property.get(i).toString());
-                            }
-                        } catch (JSONException e) {
-                            Log.e("Property_Fragment", e.toString());
-                        }
-                    }
-                }
-            } else {
-                Log.e(TAG, "null");
-            }*/
         }
     }

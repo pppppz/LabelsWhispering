@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -19,10 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.app.labelswhispering.Adapter.PagerAdapter;
@@ -60,10 +55,7 @@ public class MainActivity extends AppCompatActivity {
             resetAlarms();
         }
     };
-    private CollapsingToolbarLayout collapsingToolbarLayout;
-    private ImageView imgTitle;
     private String[] toolbar_items;
-    private Drawable imgTitleResource;
     private String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -97,13 +89,11 @@ public class MainActivity extends AppCompatActivity {
         Locale locale;
         String locale_lang = Locale.getDefault().getDisplayLanguage();
         Log.e(TAG, "Lang : " + locale_lang);
-        if (locale_lang.equals("th") || locale_lang.equals("???")) {
+        if (locale_lang.equals("th")) {
             locale = new Locale("th", "TH");
-            imgTitleResource = getResources().getDrawable(R.drawable.nav_thai);
             toolbar_items = getResources().getStringArray(R.array.toolbar_items_th);
         } else {
             locale = Locale.US;
-            imgTitleResource = getResources().getDrawable(R.drawable.nav);
             toolbar_items = getResources().getStringArray(R.array.toolbar_items);
         }
         Locale.setDefault(locale);
@@ -117,17 +107,13 @@ public class MainActivity extends AppCompatActivity {
     private void LoadUI() {
         rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
-
-        collapsingToolbarLayout.setTitle(getResources().getString(R.string.medicine_box));
         setSupportActionBar(toolbar);
-
+        if (toolbar != null) {
+            toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        }
         //Progress bar
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        //imgTitle
-        imgTitle = (ImageView) findViewById(R.id.imgViewTitle);
-        imgTitle.setImageDrawable(imgTitleResource);
 
         /**floating button**/
         fabBtn = (FloatingActionButton) findViewById(R.id.Fab_Event);
@@ -138,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
         //set tab
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_medicine_box_white_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_search_white_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_medicine_box_gray_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_schedule_gray_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_menu_gray_24dp));
 
@@ -156,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                collapsingToolbarLayout.setTitle(toolbar_items[position]);
+                toolbar.setTitle(toolbar_items[position]);
 
                 if (position == 1) {
                     fabBtn.show();
@@ -177,41 +164,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu_48; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        Intent intent;
-
-        switch (id) {
-            case R.id.action_scan_word:
-                intent = new Intent(this, ScanOCR_Activity.class);
-                // intent = new Intent(this , AlarmActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.action_scan_barcode:
-              /*  cancelAlarms();
-                Snackbar.make(rootLayout , "reset alarm" , Snackbar.LENGTH_SHORT).show();*/
-                intent = new Intent(this, ScannerFragmentActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.action_search:
-                intent = new Intent(this, SearchActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void parseLogIn() {

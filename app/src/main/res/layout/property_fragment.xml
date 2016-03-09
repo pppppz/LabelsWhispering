@@ -38,6 +38,23 @@
             android:contentDescription="@string/text_to_speech"
             android:src="@drawable/ic_record_voice_over_blue_24dp"
             android:textAppearance="?android:attr/textAppearance" />
+
+
+        <Button
+            android:id="@+id/btnSaveMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
+
+        <Button
+            android:id="@+id/btnSaveSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
     </RelativeLayout>
 
     <LinearLayout

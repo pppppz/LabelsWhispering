@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.app.labelswhispering.Medicine_box_fragment;
 import com.app.labelswhispering.Schedule_Fragment;
 import com.app.labelswhispering.User_Fragment;
+import com.app.labelswhispering.main_search_fragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;
@@ -22,13 +23,15 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return new Medicine_box_fragment();
+                return new main_search_fragment();
             case 1:
-                return new Schedule_Fragment();
+                return new Medicine_box_fragment();
             case 2:
+                return new Schedule_Fragment();
+            case 3:
                 return new User_Fragment();
             default:
-                return new Medicine_box_fragment();
+                return new main_search_fragment();
         }
     }
 

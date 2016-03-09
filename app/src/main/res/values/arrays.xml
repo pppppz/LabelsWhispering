@@ -93,6 +93,7 @@
 
     <!-- toolbar list -->
     <string-array name="toolbar_items">
+        <item>Search</item>
         <item>Medicine box</item>
         <item>Schedule</item>
         <item>User</item>
@@ -116,12 +117,14 @@
     </string-array>
 
     <array name="white_icons">
+        <item>@drawable/ic_search_white_24dp</item>
         <item>@drawable/ic_medicine_box_white_24dp</item>
         <item>@drawable/ic_schedule_white_24dp</item>
         <item>@drawable/ic_menu_white_24dp</item>
     </array>
 
     <array name="gray_icons">
+        <item>@drawable/ic_search_black_24dp</item>
         <item>@drawable/ic_medicine_box_gray_24dp</item>
         <item>@drawable/ic_schedule_gray_24dp</item>
         <item>@drawable/ic_menu_gray_24dp</item>

@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     public static LinearLayoutManager layoutManager;
     private final String TAG = SearchActivity.class.getSimpleName();
     private List<Medicine> medicineList = new ArrayList<>();
-    RecyclerItemClickListener recyclerItemClickListener = new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+    RecyclerItemClickListener recyclerItemClickListener = new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
             String medicineID = medicineList.get(position).getObjectId();

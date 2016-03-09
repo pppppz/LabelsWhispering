@@ -29,7 +29,7 @@
 
     <!-- color row schedule -->
     <color name="before_row">#FDD835</color>
-    <color name="after_row">#F44336</color>
+    <color name="after_row">#f44336</color>
     <color name="gray_row">#E0E0E0</color>
 
 

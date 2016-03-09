@@ -17,7 +17,6 @@
 
 package com.app.labelswhispering;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -34,6 +33,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.ClipboardManager;
 import android.text.SpannableStringBuilder;
 import android.text.style.CharacterStyle;
@@ -50,8 +51,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -95,7 +94,7 @@ import edu.sfsu.cs.orange.ocr.language.LanguageCodeHelper;
  * <p/>
  * The code for this class was adapted from the ZXing project: http://code.google.com/p/zxing/
  */
-public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Callback,
+public final class ScanOCR_Activity extends AppCompatActivity implements SurfaceHolder.Callback,
         ShutterButton.OnShutterButtonListener {
 
     /**
@@ -262,10 +261,18 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
             finish();
         }
 
-        Window window = getWindow();
+        /*Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);*/
         setContentView(R.layout.scan_ocr);
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_scan_ocr);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
         cameraButtonView = findViewById(R.id.camera_button_view);
         resultView = findViewById(R.id.result_view);
@@ -1030,6 +1037,7 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
     }
 
     /**
+     *
      * @param visible
      */
     @SuppressWarnings("unused")
@@ -1232,6 +1240,17 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
         prefs.edit().putBoolean(SettingsActivity.KEY_TOGGLE_LIGHT, ScanOCR_Activity.DEFAULT_TOGGLE_LIGHT).apply();
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void displayProgressDialog() {
         // Set up the indeterminate progress dialog box
         indeterminateDialog = new ProgressDialog(this);
@@ -1263,6 +1282,13 @@ public final class ScanOCR_Activity extends Activity implements SurfaceHolder.Ca
                 .setOnCancelListener(new FinishListener(this))
                 .setPositiveButton("Done", new FinishListener(this))
                 .show();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 

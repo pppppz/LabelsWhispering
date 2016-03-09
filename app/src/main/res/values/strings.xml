@@ -229,6 +229,11 @@
     <string name="record">Record :</string>
     <string name="already_have_an_account">already have an. account</string>
     <string name="location">Location :</string>
+    <string name="home">Home</string>
+    <string name="search_by_ocr">Search by OCR</string>
+    <string name="scan_by_ocr">Scan by OCR</string>
+    <string name="search_by_barcode">Search by barcode</string>
+    <string name="search_by_type">Search by type</string>
 
 
 </resources>
