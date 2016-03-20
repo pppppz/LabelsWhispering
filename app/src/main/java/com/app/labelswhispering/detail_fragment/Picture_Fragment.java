@@ -17,7 +17,6 @@ import com.app.labelswhispering.Adapter.PictureAdapter;
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Listener.RecyclerItemClickListener;
 import com.app.labelswhispering.Listener.RecyclerViewOnScrollListener;
-import com.app.labelswhispering.MainActivity;
 import com.app.labelswhispering.Model.Pictures;
 import com.app.labelswhispering.R;
 import com.parse.FindCallback;
@@ -93,7 +92,7 @@ public class Picture_Fragment extends Fragment {
             loadImg();
         } else {
             loadImg_Offline();
-            Snackbar.make(MainActivity.rootLayout, "App's running in offline mode", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(Main_Medicine_Details_Activity.rootLayout, "App's running in offline mode", Snackbar.LENGTH_INDEFINITE)
                     .setAction("OK", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

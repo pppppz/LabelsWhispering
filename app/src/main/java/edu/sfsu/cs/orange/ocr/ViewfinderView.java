@@ -122,6 +122,7 @@ public final class ViewfinderView extends View {
 
 
     /**
+     *
      * @param canvas
      */
     @SuppressWarnings("unused")

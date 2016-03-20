@@ -113,6 +113,8 @@ public class Main_Medicine_Details_Activity extends AppCompatActivity implements
 
         //toolbar
         rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout_medicine_detail);
+
+        //collapsing toolbar
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout_detail);
         collapsingToolbarLayout.setTitle(medicineName);
         /** Setting toolbar */

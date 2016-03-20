@@ -31,10 +31,10 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/register" />
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/search" />
-
+            android:label="@string/app_name" />
         <activity
             android:name=".preference.SettingsActivity"
             android:label="@string/settings" />
@@ -56,9 +56,22 @@
         <activity
             android:name=".ScanOCR_Activity"
             android:label="Scan OCR" />
+
+        <activity
+            android:name=".MedicineBoxActivity"
+            android:label="@string/medicine_box" />
         <activity
             android:name=".User_Edit_Activity"
             android:label="@string/user" />
+
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/Settings" />
+
+        <activity
+            android:name=".ScheduleActivity"
+            android:label="@string/schedule" />
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

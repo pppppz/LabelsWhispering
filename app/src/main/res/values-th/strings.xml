@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">เสียงกระซิบจากน้องฉลาก</string>
+    <string name="app_name">Labels Whispering</string>
     <string name="Cancel">ยกเลิก</string>
     <string name="want_to_logout">คุณต้องการที่จะออกจากระบบ</string>
     <string name="wait">กรุณารอซักครู่</string>
@@ -30,7 +30,7 @@
     <string name="side_effect">ผลข้างเคียง</string>
     <string name="show_no_result">ไม่พบผลลัพธ์ตามเงื่อนไขที่ค้นหา</string>
     <string name="show_info">แสดงข้อมูล</string>
-    <string name="set_schedule">ตั้งตารางนัดทานยา</string>
+    <string name="set_schedule">ตั้งตารางทานยา</string>
     <string name="app_settings">ตั้งค่าแอพพลิเคชัน</string>
     <string name="auto_focus">ออโต้โฟกัส</string>
     <string name="bedtime">ก่อนนอน</string>
@@ -78,8 +78,8 @@
     <string name="ringtoneTitle">ริงโทน</string>
     <string name="save">เซฟ</string>
     <string name="scan_barcode">สแกนบาร์โค้ด</string>
-    <string name="schedule">ตารางนัดทานยา</string>
-    <string name="schedule_has_removed">ตารางนัดทานยานี้ถูกยกเลิก</string>
+    <string name="schedule">ตารางทานยา</string>
+    <string name="schedule_has_removed">ตารางทานยานี้ถูกยกเลิก</string>
     <string name="search">ค้นหา</string>
     <string name="search_hint">ค้นหายา</string>
     <string name="summary_vibrate">สั่นเมื่อแจ้งเตือนทานยาทำงาน</string>
@@ -145,7 +145,7 @@
     <string name="reading">กำลังอ่าน</string>
     <string name="medicine_name">ชื่อยา</string>
     <string name="medicine_image">รูปของยา</string>
-    <string name="it_s_time_to_take">ขณะนี้คือเวลารับประทานยา</string>
+    <string name="it_s_time_to_take">ถึงเวลารับประทานยา</string>
     <string name="image_of_medicine">รูปภาพของยา</string>
     <string name="general_symptom">อาการอันไม่พึงประสงค์ทั่วไป</string>
     <string name="bad_symptom">อาการอันไม่พึงประสงค์รุนแรง</string>
@@ -154,7 +154,7 @@
     <string name="snooze_later">เตือนภายหลังอีกครั้ง</string>
     <string name="description">บรรยายเพิ่มเติม</string>
     <string name="done">เสร็จสิ้น</string>
-    <string name="schedule_saved">ตารางนัดทานยานี้ถูกบันทึกเรียบร้อย</string>
+    <string name="schedule_saved">ตารางทานยานี้ถูกบันทึกเรียบร้อย</string>
     <string name="please_check_again">กรุณาตรวจสอบข้อมูลอีกครั้ง</string>
     <string name="toggle_flash">เปิด/ปิด แฟลช</string>
     <string name="standard_focus_mode">โหมดโฟกัสพื้นฐาน</string>
@@ -179,4 +179,7 @@
     <string name="settings">ตั้งค่า</string>
     <string name="twitter_login">ทวิตเตอร์ล็อคอิน</string>
     <string name="user">ผู้ใช้</string>
+    <string name="type_or_voice">การพิมพ์หรือคำสั่งเสียง</string>
+    <string name="search_by">ค้นหาด้วยวิธี</string>
+    <string name="barcode">บาร์โค้ด</string>
 </resources>

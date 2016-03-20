@@ -124,7 +124,7 @@
     </array>
 
     <array name="gray_icons">
-        <item>@drawable/ic_search_black_24dp</item>
+        <item>@drawable/ic_search_gray_24dp</item>
         <item>@drawable/ic_medicine_box_gray_24dp</item>
         <item>@drawable/ic_schedule_gray_24dp</item>
         <item>@drawable/ic_menu_gray_24dp</item>

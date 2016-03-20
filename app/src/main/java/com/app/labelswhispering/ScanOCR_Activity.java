@@ -60,8 +60,6 @@ import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
 import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.app.labelswhispering.preference.SettingsActivity;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.googlecode.tesseract.android.TessBaseAPI;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -208,8 +206,8 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
     private String sourceLanguageCodeTranslation; // ISO 639-1 language code
     private int pageSegmentationMode = TessBaseAPI.PageSegMode.PSM_AUTO_OSD;
     private int ocrEngineMode = TessBaseAPI.OEM_TESSERACT_ONLY;
-    private String characterBlacklist;
-    private String characterWhitelist;
+    //private String characterBlacklist;
+    //private String characterWhitelist;
     private ShutterButton shutterButton;
     private boolean isTranslationActive; // Whether we want to show translations
     private boolean isContinuousModeActive; // Whether we are doing OCR in continuous mode
@@ -228,7 +226,6 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
     static boolean getFirstLaunch() {
         return isFirstLaunch;
@@ -386,9 +383,6 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
         });
 
         isEngineReady = false;
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -451,8 +445,8 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
         }
         if (baseApi != null) {
             baseApi.setPageSegMode(pageSegmentationMode);
-            baseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, characterBlacklist);
-            baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, characterWhitelist);
+            // baseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, characterBlacklist);
+            // baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, characterWhitelist);
         }
 
         if (hasSurface) {
@@ -808,20 +802,6 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
                         }
                         labelTextView.setText(medicineList.get(0).getName());
                         String useFor = medicineList.get(0).getUseFor();
-                       /* JSONArray useFor = medicineList.get(0).getUseFor();
-                        int numOfRow = useFor.length();
-
-                        for (int i = 0; i < numOfRow; i++) {
-                            try {
-                                metaText.append(useFor.get(i).toString() + "\n");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            if (i == 2) {
-                                i = numOfRow;
-                            }
-                        }*/
-
                         metaText.setText(useFor);
 
                         buttonGoToDetails.setVisibility(View.VISIBLE);
@@ -1190,8 +1170,8 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
         }
 
         // Retrieve from preferences, and set in this Activity, the character blacklist and whitelist
-        characterBlacklist = OcrCharacterHelper.getBlacklist(prefs, sourceLanguageCodeOcr);
-        characterWhitelist = OcrCharacterHelper.getWhitelist(prefs, sourceLanguageCodeOcr);
+        //  characterBlacklist = OcrCharacterHelper.getBlacklist(prefs, sourceLanguageCodeOcr);
+        //characterWhitelist = OcrCharacterHelper.getWhitelist(prefs, sourceLanguageCodeOcr);
 
         prefs.registerOnSharedPreferenceChangeListener(listener);
 

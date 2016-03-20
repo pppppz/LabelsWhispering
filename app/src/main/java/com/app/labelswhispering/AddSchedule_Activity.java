@@ -54,7 +54,7 @@ public class AddSchedule_Activity extends AppCompatActivity {
         setContentView(R.layout.add_schedule_fm);
 
         String locale_lang = Locale.getDefault().getDisplayLanguage();
-        if (locale_lang.equals("th") || locale_lang.equals("???")) {
+        if (locale_lang.equals("th")) {
             adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.medicine_type_th, android.R.layout.simple_spinner_item);
         } else {
             adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.medicine_type, android.R.layout.simple_spinner_item);
@@ -193,13 +193,11 @@ public class AddSchedule_Activity extends AppCompatActivity {
                     } else {
                         Log.e(TAG, "save error " + e.getLocalizedMessage());
                     }
-
                 }
             });
         } else {
             Snackbar.make(rootLayout, R.string.please_check_again, Snackbar.LENGTH_LONG).show();
         }
-
     }
 
     private void setDataToUI() {

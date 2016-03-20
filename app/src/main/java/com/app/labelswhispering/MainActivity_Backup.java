@@ -3,19 +3,24 @@ package com.app.labelswhispering;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AlertDialog;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.app.labelswhispering.Adapter.PagerAdapter;
 import com.app.labelswhispering.service.MyAlarmReceiver;
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
@@ -23,66 +28,26 @@ import com.parse.ParseUser;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_Backup extends AppCompatActivity {
 
-    // public static Toolbar toolbar;
+    public static Toolbar toolbar;
+    public static FloatingActionButton fabBtn;
+    public static CoordinatorLayout rootLayout;
     public static ProgressBar progressBar;
     public static ArrayList<PendingIntent> intentArray;
     public static AlarmManager[] alarmManager;
-    public static CoordinatorLayout rootLayout;
-    LinearLayout.OnClickListener onClickListener_search = new LinearLayout.OnClickListener() {
+    FloatingActionButton.OnClickListener fabOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            final CharSequence[] items = {getString(R.string.type_or_voice), getString(R.string.barcode), getString(R.string.ocr)};
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle(getString(R.string.search_by));
-            builder.setItems(items, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int item) {
-
-                    Intent intent = null;
-                    switch (item) {
-                        case 0:
-                            intent = new Intent(MainActivity.this, SearchActivity.class);
-                            break;
-                        case 1:
-                            intent = new Intent(MainActivity.this, ScannerFragmentActivity.class);
-                            break;
-                        case 2:
-                            intent = new Intent(MainActivity.this, ScanOCR_Activity.class);
-                            break;
-                    }
-                    startActivity(intent);
-                }
-            });
-            AlertDialog alert = builder.create();
-            alert.show();
-
-        }
-    };
-    LinearLayout.OnClickListener onClickListener_medicineBox = new LinearLayout.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, MedicineBoxActivity.class);
+            Intent intent = new Intent(MainActivity_Backup.this, AddSchedule_Activity.class);
             startActivity(intent);
         }
     };
-    LinearLayout.OnClickListener onClickListener_schedule = new LinearLayout.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
-            startActivity(intent);
-        }
-    };
-    LinearLayout.OnClickListener onClickListener_settings = new LinearLayout.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-            startActivity(intent);
-        }
-    };
+    private ViewPager viewPager;
+    private FragmentManager fragmentManager;
+    private TabLayout tabLayout;
     private SharedPreferences sharedPrefs;
     SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
@@ -90,24 +55,48 @@ public class MainActivity extends AppCompatActivity {
             resetAlarms();
         }
     };
-    private String TAG = MainActivity.class.getSimpleName();
-    private ParseUser parseUser;
+    private String[] toolbar_items;
+    private String TAG = MainActivity_Backup.class.getSimpleName();
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.e(TAG, "onResume start");
+
+        /** when return to this view  it's will show add schedule button (1 = tab schedule , 0 = home) */
+        if (tabLayout.getSelectedTabPosition() == 1) {
+            fabBtn.setVisibility(View.VISIBLE);
+        } else {
+            fabBtn.setVisibility(View.INVISIBLE);
+        }
+        Log.e(TAG, "onResume finished");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.main_activity);
+        fragmentManager = getSupportFragmentManager();
         parseLogIn();
-        init();
+        checkLanguage();
+        LoadUI();
         setPreference();
-        if (parseUser != null) {
-            scheduleAlarm();
+        scheduleAlarm();
+
+    }
+
+    private void checkLanguage() {
+        Locale locale;
+        String locale_lang = Locale.getDefault().getDisplayLanguage();
+        Log.e(TAG, "Lang : " + locale_lang);
+        if (locale_lang.equals("th")) {
+            locale = new Locale("th", "TH");
+            toolbar_items = getResources().getStringArray(R.array.toolbar_items_th);
+        } else {
+            locale = Locale.US;
+            toolbar_items = getResources().getStringArray(R.array.toolbar_items);
         }
+        Locale.setDefault(locale);
     }
 
     private void setPreference() {
@@ -115,38 +104,73 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefs.registerOnSharedPreferenceChangeListener(prefListener);
     }
 
-    private void init() {
-
-        rootLayout = (CoordinatorLayout) findViewById(R.id.main_activity_rootLayout);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+    private void LoadUI() {
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (toolbar != null) {
             toolbar.setNavigationIcon(R.mipmap.ic_launcher);
-            toolbar.setTitle(getString(R.string.app_name));
         }
-
         //Progress bar
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        //bind linear layout
-        LinearLayout linearLayout_search = (LinearLayout) findViewById(R.id.ll_search);
-        LinearLayout linearLayout_medicineBox = (LinearLayout) findViewById(R.id.ll_drug);
-        LinearLayout linearLayout_schdule = (LinearLayout) findViewById(R.id.ll_schedule);
-        LinearLayout linearLayout_settings = (LinearLayout) findViewById(R.id.ll_settings);
 
-        //set listener for linear layout
-        linearLayout_search.setOnClickListener(onClickListener_search);
-        linearLayout_medicineBox.setOnClickListener(onClickListener_medicineBox);
-        linearLayout_schdule.setOnClickListener(onClickListener_schedule);
-        linearLayout_settings.setOnClickListener(onClickListener_settings);
+        /**floating button**/
+        fabBtn = (FloatingActionButton) findViewById(R.id.Fab_Event);
+        fabBtn.setOnClickListener(fabOnClick);
+        fabBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fab_normal_color)));
+        fabBtn.setRippleColor(getResources().getColor(R.color.fab_pressed_color));
+
+
+        //set tab
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_search_white_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_medicine_box_gray_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_schedule_gray_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_menu_gray_24dp));
+
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        PagerAdapter adapter = new PagerAdapter(fragmentManager, tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+
+            private TypedArray imgWhite = getResources().obtainTypedArray(R.array.white_icons);
+            private TypedArray imgGray = getResources().obtainTypedArray(R.array.gray_icons);
+
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                toolbar.setTitle(toolbar_items[position]);
+
+                if (position == 1) {
+                    fabBtn.show();
+                }
+                tab.setIcon(imgWhite.getResourceId(position, 0));
+                viewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                fabBtn.hide();
+                tab.setIcon(imgGray.getResourceId(position, 0));
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
     }
 
     private void parseLogIn() {
 
         // get user data if null go to login
-        parseUser = ParseUser.getCurrentUser();
-        if (parseUser == null) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -155,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         //parse analytic is track
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
+
 
     //make alarm by the each time of morning to bedtime = 7 times (before meal and after meal)
     public void scheduleAlarm() {
@@ -171,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void resetAlarms() {
         if (intentArray.size() > 0) {
             for (int i = 0; i < intentArray.size(); i++) {
@@ -180,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
         }
         scheduleAlarm();
     }
+
 
     private long calculateTriggerTime(int count) {
 

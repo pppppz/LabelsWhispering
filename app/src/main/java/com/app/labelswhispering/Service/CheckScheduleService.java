@@ -1,21 +1,14 @@
 package com.app.labelswhispering.service;
 
 import android.app.IntentService;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.app.labelswhispering.MainActivity;
 import com.app.labelswhispering.Model.Schedule;
-import com.app.labelswhispering.More_detail;
-import com.app.labelswhispering.NotificationActivity;
-import com.app.labelswhispering.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -95,6 +88,7 @@ public class CheckScheduleService extends IntentService {
                 if (schedule.isAlert()) {
                     if (EatTimeCondition == 1 && schedule.isBeforeMeal() && schedule.isMorning()) {
                         createNotification(i, schedule.getName(), "Take " + schedule.getAmount() + " tablet and before " + EatTimeConditionTEXT);
+
                     } else if (EatTimeCondition == 2 && schedule.isAfterMeal() && schedule.isMorning()) {
                         createNotification(i, schedule.getName(), "Take " + schedule.getAmount() + " tablet and after " + EatTimeConditionTEXT);
                     } else if (EatTimeCondition == 3 && schedule.isBeforeMeal() && schedule.isNoon()) {
@@ -220,21 +214,21 @@ public class CheckScheduleService extends IntentService {
 
     private void createNotification(int nId, String title, String body) {
         Log.e(TAG, "create notification id:" + nId);
-        String notificationKey = getString(R.string.PreferenceShowNotificationKey);
+       /* String notificationKey = getString(R.string.PreferenceShowNotificationKey);
         boolean makeNotification = sharedPrefs.getBoolean(notificationKey, false);
         if (makeNotification) {
-            /** Done intent*/
+            /** Done intent
             Intent doneIntent = new Intent(this, MainActivity.class);
             doneIntent.putExtra("notificationId", nId);
             PendingIntent dIntent = NotificationActivity.getDismissIntent(nId, this);
 
-            /** More intent */
+            /** More intent
             Intent more_intent = new Intent(this, More_detail.class);
             //PendingIntent mIntent = PendingIntent.getActivity(this, 0 , more_intent, PendingIntent.FLAG_CANCEL_CURRENT);
             more_intent.putExtra("notificationId", nId);
             PendingIntent mIntent = More_detail.getDismissIntent(nId, this);
 
-            /**Go to main intent*/
+            /**Go to main intent
             Intent goMain_intent = new Intent(this, MainActivity.class);
             PendingIntent sIntent = PendingIntent.getActivity(this, nId, goMain_intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
@@ -250,15 +244,15 @@ public class CheckScheduleService extends IntentService {
             // mId allows you to update the notification later on.
             mNotificationManager.notify(nId, mBuilder.build());
             Log.e(TAG, " -------end------- clear noti Id:" + nId);
-        }
+        }*/
 
         //create Alert fullscreen
-        wakeUpAndSound(title);
+        makeAlertScreen(title);
 
 
     }
 
-    private void wakeUpAndSound(String body) {
+    private void makeAlertScreen(String body) {
         Log.e(TAG, "text send to alarm activity = " + body);
         it.removeExtra("timeInMillis");
         it.removeExtra("partOfDay");
