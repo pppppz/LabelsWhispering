@@ -48,24 +48,24 @@ public class ReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        rootReport = (LinearLayout) findViewById(R.id.ll_report);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_report);
 
-        tvCountChar = (TextView) findViewById(R.id.tvCountChar);
-        edReportProblem = (EditText) findViewById(R.id.etReportProblem);
-        edReportProblem.addTextChangedListener(textWatcher);
-
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        setSupportActionBar(toolbar);
+        rootReport = (LinearLayout) findViewById(R.id.ll_report);
+
+        tvCountChar = (TextView) findViewById(R.id.tvCountChar);
+        edReportProblem = (EditText) findViewById(R.id.etReportProblem);
+        edReportProblem.addTextChangedListener(textWatcher);
+
     }
 
     @Override
@@ -83,6 +83,9 @@ public class ReportActivity extends AppCompatActivity {
         switch (id) {
             case R.id.menu_report:
                 reportToServer();
+                break;
+            case android.R.id.home:
+                this.onBackPressed();
                 break;
 
         }

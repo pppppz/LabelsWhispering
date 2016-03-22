@@ -72,7 +72,7 @@ public class Property_Fragment extends Fragment {
         int type_number = Main_Medicine_Details_Activity.medicineList.get(0).getType();
         String locale_lang = Locale.getDefault().getDisplayLanguage();
         String[] type_items;
-        if (locale_lang.equals("th") || locale_lang.equals("???")) {
+        if (locale_lang.equals("th") || locale_lang.equals(getString(R.string.thai))) {
             type_items = getResources().getStringArray(R.array.medicine_type_th);
         } else {
             type_items = getResources().getStringArray(R.array.medicine_type);

@@ -182,4 +182,5 @@
     <string name="type_or_voice">การพิมพ์หรือคำสั่งเสียง</string>
     <string name="search_by">ค้นหาด้วยวิธี</string>
     <string name="barcode">บาร์โค้ด</string>
+    <string name="thai">ไทย</string>
 </resources>

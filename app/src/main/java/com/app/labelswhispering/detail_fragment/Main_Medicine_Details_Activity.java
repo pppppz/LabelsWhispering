@@ -84,7 +84,7 @@ public class Main_Medicine_Details_Activity extends AppCompatActivity implements
         Locale locale;
         String locale_lang = Locale.getDefault().getDisplayLanguage();
         Log.e(TAG, "Lang : " + locale_lang);
-        if (locale_lang.equals("th")) {
+        if (locale_lang.equals("th") || locale_lang.equals(getString(R.string.thai))) {
             locale = new Locale("th", "TH");
         } else {
             locale = Locale.US;

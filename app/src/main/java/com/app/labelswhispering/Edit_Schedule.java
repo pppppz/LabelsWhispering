@@ -7,29 +7,20 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.app.labelswhispering.Adapter.TypeAdapter;
-import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Function.isNetworkConnected;
-import com.app.labelswhispering.Listener.RecyclerItemClickListener;
 import com.app.labelswhispering.Model.Schedule;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
@@ -50,40 +41,30 @@ public class Edit_Schedule extends AppCompatActivity {
     private CheckBox Morning, Noon, Evening, Bedtime, beforeMeal, afterMeal;
     private EditText editText_NameMedicine, editTextAmount;
     private String scheduleId;
-    private int popup_type_medicine;
+    private int type_medicine_id;
     private TextView tvMedicineType;
-    private ArrayAdapter<CharSequence> adapter;
-    private RecyclerView mRecyclerView;
     private List<Schedule> scheduleList = new ArrayList<>();
-    private RecyclerView.Adapter mAdapter;
-    LinearLayoutCompat.OnClickListener showPopup = new LinearLayoutCompat.OnClickListener() {
+    private ArrayAdapter<CharSequence> adapter;
+
+    RelativeLayout.OnClickListener showPopup = new RelativeLayout.OnClickListener() {
         @Override
         public void onClick(View v) {
-            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            final View popupView = layoutInflater.inflate(R.layout.popup_medicine_type, null);
 
-            final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            mRecyclerView = (RecyclerView) popupView.findViewById(R.id.recycler_view_type);
-            mRecyclerView.addItemDecoration(new DividerItemDecoration(getBaseContext(), R.drawable.divider));
+            AlertDialog.Builder builder = new AlertDialog.Builder(Edit_Schedule.this);
+            builder.setTitle(getString(R.string.choose_your_medicine_type));
+            builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int item) {
 
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
-            mRecyclerView.setLayoutManager(mLayoutManager);
-
-            /** create adapter for put on array from class schedule **/
-            mAdapter = new TypeAdapter(getBaseContext(), adapter);
-            mRecyclerView.setAdapter(mAdapter);
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getBaseContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    popup_type_medicine = position;
-                    Log.e(TAG, "type medicine " + popup_type_medicine);
-                    tvMedicineType.setText(adapter.getItem(popup_type_medicine));
-                    popupWindow.dismiss();
+                    // Intent intent = null;
+                    // intent = new Intent(MainActivity.this, SearchActivity.class);
+                    tvMedicineType.setText(adapter.getItem(item));
+                    type_medicine_id = item;
+                    // startActivity(intent);
                 }
-            }));
-            popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     };
     private CoordinatorLayout rootLayout;
@@ -96,7 +77,9 @@ public class Edit_Schedule extends AppCompatActivity {
         setContentView(R.layout.add_schedule_fm);
 
         String locale_lang = Locale.getDefault().getDisplayLanguage();
-        if (locale_lang.equals("th") || locale_lang.equals("???")) {
+
+        Log.e(TAG, "Locale = " + locale_lang);
+        if (locale_lang.equals("th") || locale_lang.equals(getString(R.string.thai))) {
             adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.medicine_type_th, android.R.layout.simple_spinner_item);
         } else {
             adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.medicine_type, android.R.layout.simple_spinner_item);
@@ -148,7 +131,7 @@ public class Edit_Schedule extends AppCompatActivity {
 
         switch_alert = (SwitchCompat) findViewById(R.id.switch_alert);
 
-        LinearLayoutCompat linearLayoutCompat_MedicineType = (LinearLayoutCompat) findViewById(R.id.ll_medicine_type);
+        RelativeLayout linearLayoutCompat_MedicineType = (RelativeLayout) findViewById(R.id.ll_medicine_type);
         linearLayoutCompat_MedicineType.setOnClickListener(showPopup);
 
     }
@@ -244,7 +227,7 @@ public class Edit_Schedule extends AppCompatActivity {
                     object.setBedtime(Bedtime.isChecked());
                     object.setBeforeMeal(beforeMeal.isChecked());
                     object.setAfterMeal(afterMeal.isChecked());
-                    object.setType(popup_type_medicine);
+                    object.setType(type_medicine_id);
                     object.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
