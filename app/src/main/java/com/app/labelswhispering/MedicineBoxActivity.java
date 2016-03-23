@@ -3,8 +3,10 @@ package com.app.labelswhispering;
 
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +36,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicineBoxActivity extends AppCompatActivity {
+    FloatingActionButton.OnClickListener fabOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MedicineBoxActivity.this, AddSchedule_Activity.class);
+            startActivity(intent);
+        }
+    };
     private CoordinatorLayout rootLayout;
     private String TAG;
     private List<Medicine> medicineList = new ArrayList<>();
@@ -87,6 +96,13 @@ public class MedicineBoxActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_medicineBox);
 
         ll_medicineBox = (LinearLayout) findViewById(R.id.ll_medicine_box);
+
+        /**floating button**/
+
+        FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fab_medicineBox);
+        fabBtn.setOnClickListener(fabOnClick);
+        fabBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fab_normal_color)));
+        fabBtn.setRippleColor(getResources().getColor(R.color.fab_pressed_color));
 
         /**declare list view and set adapter to list view (UI)**/
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_home);
