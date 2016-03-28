@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.app.labelswhispering.detail_fragment.Details_Fragment;
 import com.app.labelswhispering.detail_fragment.HowKeep_Fragment;
 import com.app.labelswhispering.detail_fragment.HowToTake_Fragment;
 import com.app.labelswhispering.detail_fragment.If_Forget_Fragment;
@@ -25,7 +26,7 @@ public class PagerInMoreDetailAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return new Property_Fragment();
+                return new Details_Fragment();
             case 1:
                 return new HowToTake_Fragment();
             case 2:

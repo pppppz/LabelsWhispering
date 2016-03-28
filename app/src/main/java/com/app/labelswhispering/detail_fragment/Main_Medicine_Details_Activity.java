@@ -129,10 +129,10 @@ public class Main_Medicine_Details_Activity extends AppCompatActivity implements
         tabLayout = (TabLayout) findViewById(R.id.tabLayout_medicine_detail);
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.property));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.how_to_take));
+      /*  tabLayout.addTab(tabLayout.newTab().setText(R.string.how_to_take));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.if_forget));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.side_effect));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.how_to_keep));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.how_to_keep));*/
         tabLayout.addTab(tabLayout.newTab().setText(R.string.picture));
         imgToolbar = (ImageView) findViewById(R.id.imgViewMedicineDetail);
 
