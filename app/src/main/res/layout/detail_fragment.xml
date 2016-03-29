@@ -1,33 +1,30 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandable="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
+    <com.andexert.expandablelayout.library.ExpandableLayout
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e74c3c"
+        expandable:el_contentLayout="@layout/view_content"
+        expandable:el_headerLayout="@layout/view_header" />
 
-    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-        android:id="@+id/expandableLayout"
+    <com.andexert.expandablelayout.library.ExpandableLayoutListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:ael_expanded="false"
-        app:ael_duration="500"
-        app:ael_interpolator="bounce"
-        app:ael_orientation="vertical">
+        android:layout_below="@+id/first"
+        android:layout_marginTop="15dp" />
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="sample" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text"
-            android:text="sample2" />
-    </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-
+</RelativeLayout>
 
     <!--    <RelativeLayout
             android:layout_width="match_parent"
@@ -212,5 +209,3 @@
 
         </LinearLayout> -->
 
-
-</LinearLayout>

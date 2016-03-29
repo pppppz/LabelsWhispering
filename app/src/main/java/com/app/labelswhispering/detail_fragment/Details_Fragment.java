@@ -7,42 +7,33 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.andexert.expandablelayout.library.ExpandableLayoutListView;
 import com.app.labelswhispering.R;
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import java.util.Locale;
 
 
 public class Details_Fragment extends Fragment {
-
+    private final String[] array = {"Hello", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome"};
     private TextView tvTradeName, tvType, tvProperty;
     private String TAG = Details_Fragment.class.getSimpleName();
     private CheckBox cbBefore, cbAfter, cbMorning, cbNoon, cbEvening, cbBedtime;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
-        ExpandableRelativeLayout expandLayout
-                = (ExpandableRelativeLayout) view.findViewById(R.id.expandableLayout);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.view_row, R.id.header_text, array);
+        final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) view.findViewById(R.id.listview);
 
-// toggle expand, collapse
-        expandLayout.toggle();
-// expand
-        expandLayout.expand();
-// collapse
-        expandLayout.collapse();
+        expandableLayoutListView.setAdapter(arrayAdapter);
 
-// move position of child view
-        expandLayout.moveChild(0);
-// move optional position
-        expandLayout.move(500);
 
-// set base position which is close position
-        expandLayout.setClosePosition(500);
 
 
        /* tvType = (TextView) view.findViewById(R.id.tvType);
