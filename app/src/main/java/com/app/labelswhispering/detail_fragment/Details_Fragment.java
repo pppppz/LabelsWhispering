@@ -7,18 +7,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.andexert.expandablelayout.library.ExpandableLayoutListView;
 import com.app.labelswhispering.R;
 
 import java.util.Locale;
 
 
 public class Details_Fragment extends Fragment {
-    private final String[] array = {"Hello", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome"};
     private TextView tvTradeName, tvType, tvProperty;
     private String TAG = Details_Fragment.class.getSimpleName();
     private CheckBox cbBefore, cbAfter, cbMorning, cbNoon, cbEvening, cbBedtime;
@@ -28,15 +26,8 @@ public class Details_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.view_row, R.id.header_text, array);
-        final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) view.findViewById(R.id.listview);
 
-        expandableLayoutListView.setAdapter(arrayAdapter);
-
-
-
-
-       /* tvType = (TextView) view.findViewById(R.id.tvType);
+        tvType = (TextView) view.findViewById(R.id.tvType);
         tvTradeName = (TextView) view.findViewById(R.id.tvTradeName);
         tvProperty = (TextView) view.findViewById(R.id.tvProperty);
         cbBefore = (CheckBox) view.findViewById(R.id.cb_beforeMeal_pf);
@@ -52,14 +43,14 @@ public class Details_Fragment extends Fragment {
                 Main_Medicine_Details_Activity.speakOut(getString(R.string.type) + tvType.getText() + getString(R.string.properties) + tvProperty.getText().toString());
             }
         });
-*/
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //setDataToUI();
+        setDataToUI();
     }
 
 
