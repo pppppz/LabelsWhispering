@@ -20,6 +20,8 @@
     <color name="accent">#FF9100</color>
     <color name="divider">#EEE</color>
     <color name="warning_color">#F44336</color>
+    <color name="primary_green">#6a8136</color>
+    <color name="background_card">#FEFEFE</color>
 
 
     <!--theme -->

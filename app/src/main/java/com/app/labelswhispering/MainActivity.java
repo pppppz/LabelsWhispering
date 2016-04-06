@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Progress bar
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        //  progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         //bind linear layout
         LinearLayout linearLayout_search = (LinearLayout) findViewById(R.id.ll_search);

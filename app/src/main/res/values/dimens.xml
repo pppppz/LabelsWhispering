@@ -27,4 +27,10 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
+    <dimen name="text_size_header_large">36sp</dimen>
+    <dimen name="text_size_header">24sp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="card_cover_height">350dp</dimen>
+
+
 </resources>

@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.labelswhispering.Model.Barcode;
-import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.google.zxing.Result;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -170,7 +169,7 @@ public class ScanBarcodeFragment extends Fragment implements ZXingScannerView.Re
                 if (e == null) {
                     // If there are results, update the list of posts
                     if (medicineName.size() == 1) {
-                        Intent intent = new Intent(fActivity, Main_Medicine_Details_Activity.class);
+                        Intent intent = new Intent(fActivity, MedicineDetails_Activity.class);
                         intent.putExtra("medicineID", medicineName.get(0).getMedicineId());
                         Log.e(TAG, "Medicine ID : " + medicineName.get(0).getMedicineId());
                         startActivity(intent);

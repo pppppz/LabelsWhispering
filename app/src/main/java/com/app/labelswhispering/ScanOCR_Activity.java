@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2008 ZXing authors
- * Copyright 2011 Robert Theis
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.app.labelswhispering;
 
 import android.app.AlertDialog;
@@ -58,7 +41,6 @@ import android.widget.Toast;
 
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
-import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.app.labelswhispering.preference.SettingsActivity;
 import com.googlecode.tesseract.android.TessBaseAPI;
 import com.parse.FindCallback;
@@ -808,7 +790,7 @@ public final class ScanOCR_Activity extends AppCompatActivity implements Surface
                         buttonGoToDetails.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(ScanOCR_Activity.this, Main_Medicine_Details_Activity.class);
+                                Intent intent = new Intent(ScanOCR_Activity.this, MedicineDetails_Activity.class);
                                 intent.putExtra("medicineID", medicineList.get(0).getObjectId());
                                 startActivity(intent);
                                 finish();

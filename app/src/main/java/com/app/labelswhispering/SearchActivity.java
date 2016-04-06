@@ -25,7 +25,6 @@ import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Function.RecyclerItemClickListener;
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Model.Medicine;
-import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -45,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
             String medicineID = medicineList.get(position).getObjectId();
             String medicineName = medicineList.get(position).getName();
             Log.e(TAG, "objectId : " + medicineID);
-            Intent intent = new Intent(SearchActivity.this, Main_Medicine_Details_Activity.class);
+            Intent intent = new Intent(SearchActivity.this, MedicineDetails_Activity.class);
             intent.putExtra("medicineID", medicineID);
             intent.putExtra("medicineName", medicineName);
             intent.putExtra("flag", "search");

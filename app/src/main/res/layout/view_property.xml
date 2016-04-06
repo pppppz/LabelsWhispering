@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    android:layout_height="wrap_content"
     android:background="#333"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -55,8 +54,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="32dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingLeft="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,10 +72,10 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:paddingTop="16dp">
 
         <CheckBox
@@ -88,7 +86,6 @@
             android:checked="false"
             android:clickable="false"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:text="@string/before_meal" />
 
         <CheckBox
@@ -98,8 +95,7 @@
             android:layout_weight="0.5"
             android:checked="false"
             android:clickable="false"
-            android:paddingLeft="0dp"
-            android:paddingStart="0dp"
+            android:paddingRight="16dp"
             android:text="@string/after_meal" />
     </LinearLayout>
 

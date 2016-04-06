@@ -24,7 +24,6 @@ import com.app.labelswhispering.Function.DividerItemDecoration;
 import com.app.labelswhispering.Function.isNetworkConnected;
 import com.app.labelswhispering.Listener.RecyclerItemClickListener;
 import com.app.labelswhispering.Model.Medicine;
-import com.app.labelswhispering.detail_fragment.Main_Medicine_Details_Activity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -52,7 +51,7 @@ public class MedicineBoxActivity extends AppCompatActivity {
             try {
                 String medicineID = medicineList.get(position).getObjectId();
                 String medicineName = medicineList.get(position).getName();
-                Intent intent = new Intent(MedicineBoxActivity.this, Main_Medicine_Details_Activity.class);
+                Intent intent = new Intent(MedicineBoxActivity.this, MedicineDetails_Activity.class);
                 intent.putExtra("medicineID", medicineID);
                 intent.putExtra("medicineName", medicineName);
                 startActivity(intent);
@@ -100,9 +99,12 @@ public class MedicineBoxActivity extends AppCompatActivity {
         /**floating button**/
 
         FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fab_medicineBox);
-        fabBtn.setOnClickListener(fabOnClick);
-        fabBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fab_normal_color)));
-        fabBtn.setRippleColor(getResources().getColor(R.color.fab_pressed_color));
+        if (fabBtn != null) {
+            fabBtn.setOnClickListener(fabOnClick);
+            fabBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.fab_normal_color)));
+            fabBtn.setRippleColor(getResources().getColor(R.color.fab_pressed_color));
+        }
+
 
         /**declare list view and set adapter to list view (UI)**/
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_home);
