@@ -23,7 +23,7 @@ import android.hardware.Camera;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.app.labelswhispering.preference.SettingsActivity;
+import com.app.labelswhispering.Controller.Preference.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;

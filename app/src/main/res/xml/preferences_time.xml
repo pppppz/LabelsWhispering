@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="Behavior Settings">
-    <com.app.labelswhispering.preference.TimePreference
+    <com.app.labelswhispering.Controller.Preference.TimePreference
         android:key="timeMorning_Key"
         android:summary="Should you choose between 5AM to 12AM."
         android:title="@string/alert_morning" />
-    <com.app.labelswhispering.preference.TimePreference
+    <com.app.labelswhispering.Controller.Preference.TimePreference
         android:key="timeNoon_Key"
         android:summary="Should you choose between >12AM to 5PM."
         android:title="@string/alert_afternoon" />
-    <com.app.labelswhispering.preference.TimePreference
+    <com.app.labelswhispering.Controller.Preference.TimePreference
         android:key="timeEvening_Key"
         android:summary="Should you choose between >5PM to 9PM."
         android:title="@string/alert_evening" />
-    <com.app.labelswhispering.preference.TimePreference
+    <com.app.labelswhispering.Controller.Preference.TimePreference
         android:key="timeBedtime_Key"
         android:summary="Should you choose between >9PM to 2AM."
         android:title="@string/alert_bedtime" />

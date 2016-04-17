@@ -30,7 +30,9 @@
     <dimen name="text_size_header_large">36sp</dimen>
     <dimen name="text_size_header">24sp</dimen>
     <dimen name="margin_medium">8dp</dimen>
-    <dimen name="card_cover_height">350dp</dimen>
+    <dimen name="card_cover_height">100dp</dimen>
+
+    <dimen name="card_cover_height_propety">300dp</dimen>
 
 
 </resources>

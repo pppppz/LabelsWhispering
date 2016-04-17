@@ -20,7 +20,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.app.labelswhispering.ScanOCR_Activity;
+import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 import org.xeustechnologies.jtar.TarEntry;

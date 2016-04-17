@@ -22,8 +22,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.app.labelswhispering.R;
-import com.app.labelswhispering.ScanOCR_Activity;
 
 import edu.sfsu.cs.orange.ocr.camera.CameraManager;
 

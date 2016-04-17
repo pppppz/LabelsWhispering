@@ -240,6 +240,11 @@
     <string name="barcode">Barcode</string>
     <string name="search_by">Search by</string>
     <string name="Details">Details</string>
+    <string name="title_if_forget">If forget to take medicine</string>
+    <string name="title_how_to_take">How to take medicine</string>
+    <string name="title_side_effect">Side Effect</string>
+    <string name="title_how_to_keep">How to keep medicine</string>
+    <string name="tell_doctor">Tell Doctor</string>
 
 
 </resources>

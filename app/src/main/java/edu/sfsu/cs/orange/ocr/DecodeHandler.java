@@ -7,8 +7,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.app.labelswhispering.R;
-import com.app.labelswhispering.ScanOCR_Activity;
 import com.googlecode.leptonica.android.Pixa;
 import com.googlecode.leptonica.android.ReadFile;
 import com.googlecode.tesseract.android.TessBaseAPI;

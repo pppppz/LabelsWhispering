@@ -29,7 +29,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-import com.app.labelswhispering.preference.SettingsActivity;
+import com.app.labelswhispering.Controller.Preference.SettingsActivity;
 
 import java.io.IOException;
 

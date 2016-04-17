@@ -20,7 +20,7 @@ package edu.sfsu.cs.orange.ocr;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.app.labelswhispering.ScanOCR_Activity;
+import com.app.labelswhispering.Controller.ScanOCR_Activity;
 
 import java.util.concurrent.CountDownLatch;
 

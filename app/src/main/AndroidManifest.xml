@@ -20,57 +20,57 @@
     <uses-feature android:name="android.hardware.screen.landscape" />
 
     <application
-        android:name=".MyApp"
+        android:name=".Controller.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.WithoutActionBar"
         tools:replace="android:icon">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Controller.LoginActivity"
             android:label="@string/log_in" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Controller.RegisterActivity"
             android:label="@string/register" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Controller.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".preference.SettingsActivity"
+            android:name=".Controller.Preference.SettingsActivity"
             android:label="@string/settings" />
         <activity
-            android:name=".FacebookLoginActivity"
+            android:name=".Controller.FacebookLoginActivity"
             android:label="@string/facebook_login" />
         <activity
-            android:name=".TwitterLoginActivity"
+            android:name=".Controller.TwitterLoginActivity"
             android:label="@string/twitter_login" />
         <activity
-            android:name=".AddSchedule_Activity"
+            android:name=".Controller.AddSchedule_Activity"
             android:label="@string/add_schedule" />
 
-        <activity android:name=".DisplayImg_Activity" />
+        <activity android:name=".Controller.DisplayImg_Activity" />
         <activity
-            android:name=".ScannerFragmentActivity"
+            android:name=".Controller.ScannerFragmentActivity"
             android:label="@string/scan_barcode" />
 
         <activity
-            android:name=".ScanOCR_Activity"
+            android:name=".Controller.ScanOCR_Activity"
             android:label="Scan OCR" />
 
         <activity
-            android:name=".MedicineBoxActivity"
+            android:name=".Controller.MedicineBoxActivity"
             android:label="@string/medicine_box" />
         <activity
-            android:name=".User_Edit_Activity"
+            android:name=".Controller.User_Edit_Activity"
             android:label="@string/user" />
 
         <activity
-            android:name=".SettingActivity"
+            android:name=".Controller.SettingActivity"
             android:label="@string/Settings" />
 
         <activity
-            android:name=".ScheduleActivity"
+            android:name=".Controller.ScheduleActivity"
             android:label="@string/schedule" />
 
         <activity
@@ -79,31 +79,31 @@
             android:label="@string/home"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".More_detail"
+            android:name=".Controller.More_detail"
             android:label="@string/title_activity_detail__time2_eat"
             android:theme="@style/AppTheme.WithoutActionBar" />
 
         <activity
-            android:name=".Edit_Schedule"
+            android:name=".Controller.Edit_Schedule"
             android:label="@string/edit_schedule" />
         <activity
-            android:name=".NotificationActivity"
+            android:name=".Controller.NotificationActivity"
             android:excludeFromRecents="true"
             android:taskAffinity="" />
 
         <activity android:name="edu.sfsu.cs.orange.ocr.HelpActivity" />
 
         <activity
-            android:name=".ReportActivity"
+            android:name=".Controller.ReportActivity"
             android:label="@string/report_problem" />
 
 
-        <activity android:name=".service.AlarmActivity" />
+        <activity android:name=".Controller.Services.AlarmActivity" />
         <activity
-            android:name=".MedicineDetails_Activity"
+            android:name=".Controller.MedicineDetails_Activity"
             android:label="Detail" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".Controller.SearchActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -116,7 +116,7 @@
 
         <!-- splash screen first page -->
         <activity
-            android:name=".MainSplashScreen"
+            android:name=".Controller.MainSplashScreen"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -126,11 +126,11 @@
         </activity>
 
         <receiver
-            android:name=".service.MyAlarmReceiver"
+            android:name=".Controller.Services.MyAlarmReceiver"
             android:process=":remote" />
 
         <service
-            android:name=".service.CheckScheduleService"
+            android:name=".Controller.Services.CheckScheduleService"
             android:exported="false" />
 
         <meta-data

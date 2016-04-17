@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/scanner_fragment"
-        android:name="com.app.labelswhispering.ScanBarcodeFragment"
+        android:name="com.app.labelswhispering.Controller.ScanBarcodeFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

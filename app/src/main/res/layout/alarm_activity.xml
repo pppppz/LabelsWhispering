@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".service.AlarmActivity">
+    tools:context=".Controller.Services.AlarmActivity">
 
     <TextView
         android:id="@+id/textView4"

@@ -47,7 +47,7 @@
     <color name="com_parse_ui_facebook_login_button">#3B5998</color>
     <color name="com_parse_ui_facebook_login_button_push">#2E4677</color>
     <color name="com_parse_ui_facebook_login_button_focus">#304F8B</color>
-    <color name="com_parse_ui_twitter_login_button">#2DAAE2</color>
+    <color name="com_parse_ui_twitter_login_button">#2daae2</color>
     <color name="com_parse_ui_twitter_login_button_push">#2588B5</color>
     <color name="com_parse_ui_twitter_login_button_focus">#2788BE</color>
 
@@ -67,6 +67,11 @@
     <color name="viewfinder_corners">#ffffffff</color> <!-- four corner elements for viewfinder -->
     <color name="viewfinder_frame">#ffd6d6d6</color>  <!-- viewfinder rectangle -->
     <color name="viewfinder_mask">#60000000</color>  <!--  viewfinder exterior darkened area -->
+
+
+    <!-- TAB Details -->
+    <color name="tab1">#29B6F6</color>
+    <color name="tab2">#0288D1</color>
 
 
 </resources>

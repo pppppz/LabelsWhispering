@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout
+
     android:id="@+id/rootLayout_medicine_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -40,61 +43,73 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+        <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ProgressBar
                 android:id="@+id/progress_bar_medicine_detail"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_centerInParent="true"
                 android:indeterminate="true"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_how_to_take"
+
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_property"
+                <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_if_forget"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <include
+                        layout="@layout/view_property"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_side_effect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <include
+                        layout="@layout/view_how_to_take"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_how_to_keep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <include
+                        layout="@layout/view_ifforget"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_picture"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                    <include
+                        layout="@layout/view_tell_doctor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-        </LinearLayout>
+                    <include
+                        layout="@layout/view_how_to_keep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/view_side_effect"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        layout="@layout/view_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
+            </android.support.v4.widget.NestedScrollView>
 
 
-</android.support.design.widget.CoordinatorLayout>
+        </RelativeLayout>
 
 
+    </android.support.design.widget.CoordinatorLayout>
+
+</merge>

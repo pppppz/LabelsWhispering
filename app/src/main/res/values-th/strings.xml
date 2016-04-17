@@ -183,4 +183,16 @@
     <string name="search_by">ค้นหาด้วยวิธี</string>
     <string name="barcode">บาร์โค้ด</string>
     <string name="thai">ไทย</string>
+    <string name="title_how_to_keep">วิธีเก็บรักษายา</string>
+    <string name="title_how_to_take">วิธีรับประทานยา</string>
+    <string name="title_if_forget">หากลืมรับประทานยา</string>
+    <string name="title_side_effect">ผลข้างเคียงของยา</string>
+    <string name="search_by_ocr">ค้นหาข้อมูลด้วยโอซีอาร์</string>
+    <string name="search_by_type">ค้นหาตามชนิดของยา</string>
+    <string name="search_by_barcode">ค้นหาด้วยบาร์โค้ด</string>
+    <string name="scan_by_ocr">สแกนด้วยโอซีอาร์</string>
+    <string name="please_waiting">กรุณารอซักครู่</string>
+    <string name="location">สถานที่ :</string>
+    <string name="already_have_an_account">บัญชีนี้มีอยู่แล้ว กรุณาตรวจสอบอีกครั้ง</string>
+    <string name="tell_doctor">สิ่งที่จำเป็นต้องบอกแพทย์</string>
 </resources>
