@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Model;
+package com.app.labelswhispering.model;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;

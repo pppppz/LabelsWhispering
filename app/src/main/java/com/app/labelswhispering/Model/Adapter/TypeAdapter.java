@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Model.Adapter;
+package com.app.labelswhispering.model.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

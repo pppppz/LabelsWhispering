@@ -20,7 +20,7 @@ package edu.sfsu.cs.orange.ocr;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.app.labelswhispering.Controller.ScanOCR_Activity;
+import com.app.labelswhispering.viewcontroller.ScanOCR;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -31,11 +31,11 @@ import java.util.concurrent.CountDownLatch;
  */
 final class DecodeThread extends Thread {
 
-    private final ScanOCR_Activity activity;
+    private final ScanOCR activity;
     private final CountDownLatch handlerInitLatch;
     private Handler handler;
 
-    DecodeThread(ScanOCR_Activity activity) {
+    DecodeThread(ScanOCR activity) {
         this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
     }

@@ -65,7 +65,6 @@
     <string name="search">Search</string>
     <string name="view_your_profile">View your profile</string>
     <string name="ocr">OCR</string>
-    <string name="favourite">Favourite</string>
     <string name="trade_name">Trade name</string>
     <string name="general_symptom">General symptom</string>
     <string name="bad_symptom">Bad symptom</string>
@@ -245,6 +244,10 @@
     <string name="title_side_effect">Side Effect</string>
     <string name="title_how_to_keep">How to keep medicine</string>
     <string name="tell_doctor">Tell Doctor</string>
+    <string name="speak_it_to_me">Speak it to me</string>
+    <string name="amount_per_time">Amount per time</string>
+    <string name="not_found">Not found</string>
+    <string name="pin">Pin to read later</string>
 
 
 </resources>

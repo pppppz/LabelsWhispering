@@ -22,8 +22,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.viewcontroller.ScanOCR;
 import com.googlecode.leptonica.android.ReadFile;
 import com.googlecode.tesseract.android.ResultIterator;
 import com.googlecode.tesseract.android.TessBaseAPI;
@@ -41,7 +41,7 @@ final class OcrRecognizeAsyncTask extends AsyncTask<Void, Void, Boolean> {
     //  private static final boolean PERFORM_OTSU_THRESHOLDING = false;
     //  private static final boolean PERFORM_SOBEL_THRESHOLDING = false;
 
-    private ScanOCR_Activity activity;
+    private ScanOCR activity;
     private TessBaseAPI baseApi;
     private byte[] data;
     private int width;
@@ -49,7 +49,7 @@ final class OcrRecognizeAsyncTask extends AsyncTask<Void, Void, Boolean> {
     private OcrResult ocrResult;
     private long timeRequired;
 
-    OcrRecognizeAsyncTask(ScanOCR_Activity activity, TessBaseAPI baseApi, byte[] data, int width, int height) {
+    OcrRecognizeAsyncTask(ScanOCR activity, TessBaseAPI baseApi, byte[] data, int width, int height) {
         this.activity = activity;
         this.baseApi = baseApi;
         this.data = data;

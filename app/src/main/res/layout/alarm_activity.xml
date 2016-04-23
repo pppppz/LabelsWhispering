@@ -5,27 +5,58 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Controller.Services.AlarmActivity">
+    tools:context=".viewcontroller.services.AlarmScreenActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="16dp"
-        android:text="@string/it_s_time_to_take"
-        android:textColor="#0099CC"
-        android:textSize="35sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewCurrentTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView4"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="16dp"
-        android:textColor="#0099CC"
-        android:textSize="35sp" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:text="@string/it_s_time_to_take"
+            android:textColor="#0099CC"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textViewCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView4"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="8dp"
+            android:text="medicine name"
+            android:textColor="#0099CC"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:text="@string/amount"
+                android:textColor="#0099CC"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#0099CC"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,9 +79,9 @@
                 android:layout_height="240dp"
                 android:layout_centerInParent="true"
                 android:focusableInTouchMode="false"
-                app:ringbutton_downDrawable="@drawable/ic_done_blue_48dp"
+                app:ringbutton_downDrawable="@drawable/ic_tick"
                 app:ringbutton_downText="@string/im_done"
-                app:ringbutton_upDrawable="@drawable/ic_refresh_blue_48dp"
+                app:ringbutton_upDrawable="@drawable/ic_refresh_48dp"
                 app:ringbutton_upText="@string/snooze_later" />
 
         </com.skyfishjy.library.RippleBackground>

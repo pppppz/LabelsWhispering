@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Labels Whispering</string>
+    <string name="app_name">เสียงกระซิบจากน้องฉลาก</string>
     <string name="Cancel">ยกเลิก</string>
     <string name="want_to_logout">คุณต้องการที่จะออกจากระบบ</string>
     <string name="wait">กรุณารอซักครู่</string>
     <string name="your_name_has_changed">ชื่อของคุณเปลี่ยวแล้ว</string>
-    <string name="you_can_search_medicine_and_pin_for_save">คุณสามารถค้นหายาและพินเพื่อเซฟ</string>
+    <string name="you_can_search_medicine_and_pin_for_save">คุณสามารเพิ่มชนิดยาได้จากหน้านี้หรือผ่านค้นหา</string>
     <string name="view_your_profile">ดูโปรไพล์ของคุณ</string>
     <string name="view_all">ดูทั้งหมด</string>
     <string name="view">ดู</string>
@@ -47,7 +47,7 @@
     <string name="email_has_changed">อีเมลถูกเปลี่ยนแล้ว</string>
     <string name="noon">กลางวัน</string>
     <string name="no_alarm_activity">ไม่มีการแจ้งเตือนการรับประทานยา</string>
-    <string name="no_medicine">ไม่มียาชนิดนี้</string>
+    <string name="no_medicine">ไม่มียาใดๆอยู่ในกล่องเลย</string>
     <string name="new_user">ผู้ใช้ใหม่:</string>
     <string name="name">ชื่อ</string>
     <string name="my_medicine_box">กล่องยาของฉัน</string>
@@ -105,7 +105,6 @@
     <string name="front_camera">กล้องหน้า</string>
     <string name="flash_on">เปิดแฟลช</string>
     <string name="forgot_password"><u>ลืมรหัสผ่าน</u></string>
-    <string name="favourite">ชอบ</string>
     <string name="facebook_login_button_label">เข้าระบบด้วยเฟซบุ๊ค</string>
     <string name="evening">เย็น</string>
     <string name="enter_amount">ใส่จำนวน</string>
@@ -195,4 +194,8 @@
     <string name="location">สถานที่ :</string>
     <string name="already_have_an_account">บัญชีนี้มีอยู่แล้ว กรุณาตรวจสอบอีกครั้ง</string>
     <string name="tell_doctor">สิ่งที่จำเป็นต้องบอกแพทย์</string>
+    <string name="speak_it_to_me">อ่านให้ฉันฟัง</string>
+    <string name="amount_per_time">จำนวนที่รับประทานต่อครั้ง</string>
+    <string name="not_found">ไม่พบข้อมูล</string>
+    <string name="pin">พินเพื่อเก็บไว้อ่าน</string>
 </resources>

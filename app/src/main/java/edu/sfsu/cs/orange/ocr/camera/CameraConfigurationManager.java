@@ -27,7 +27,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.app.labelswhispering.Controller.Preference.SettingsActivity;
+import com.app.labelswhispering.viewcontroller.preference.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;

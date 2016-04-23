@@ -19,7 +19,7 @@
         android:summary="@string/PreferenceAlarmSettings"
         android:title="@string/PreferenceAlarmSettings">
 
-        <com.app.labelswhispering.Controller.Preference.ExtraRingtonePreference
+        <com.app.labelswhispering.viewcontroller.preference.ExtraRingtonePreference
             android:defaultValue="content://settings/system/notification_sound"
             android:key="ringtone"
             android:summary="@string/ringtoneSummary"

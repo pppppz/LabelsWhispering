@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Model;
+package com.app.labelswhispering.model;
 
 import com.facebook.Profile;
 import com.parse.ParseClassName;

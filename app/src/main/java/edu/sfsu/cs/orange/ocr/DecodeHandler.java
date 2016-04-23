@@ -7,8 +7,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.viewcontroller.ScanOCR;
 import com.googlecode.leptonica.android.Pixa;
 import com.googlecode.leptonica.android.ReadFile;
 import com.googlecode.tesseract.android.TessBaseAPI;
@@ -21,14 +21,14 @@ import com.googlecode.tesseract.android.TessBaseAPI;
 public final class DecodeHandler extends Handler {
 
     private static boolean isDecodePending;
-    private final ScanOCR_Activity activity;
+    private final ScanOCR activity;
     private final TessBaseAPI baseApi;
     private boolean running = true;
     private BeepManager beepManager;
     private Bitmap bitmap;
     private long timeRequired;
 
-    DecodeHandler(ScanOCR_Activity activity) {
+    DecodeHandler(ScanOCR activity) {
         this.activity = activity;
         baseApi = activity.getBaseApi();
         beepManager = new BeepManager(activity);

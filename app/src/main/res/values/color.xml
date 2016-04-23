@@ -17,7 +17,7 @@
     <color name="blue">#000099</color>
     <color name="primary">#00BCD4</color>
     <color name="primaryDark">#0097A7</color>
-    <color name="accent">#FF9100</color>
+    <color name="accent">#ff9100</color>
     <color name="divider">#EEE</color>
     <color name="warning_color">#F44336</color>
     <color name="primary_green">#6a8136</color>
@@ -73,5 +73,9 @@
     <color name="tab1">#29B6F6</color>
     <color name="tab2">#0288D1</color>
 
+
+    <color name="button_speak_it_to_me">#29B6F6</color>
+
+    <color name="background">#29B6F6</color>
 
 </resources>

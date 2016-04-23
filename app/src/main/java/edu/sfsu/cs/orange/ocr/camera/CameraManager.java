@@ -29,7 +29,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-import com.app.labelswhispering.Controller.Preference.SettingsActivity;
+import com.app.labelswhispering.viewcontroller.preference.SettingsActivity;
 
 import java.io.IOException;
 
@@ -237,6 +237,11 @@ public final class CameraManager {
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
         }
         return framingRect;
+    }
+
+
+    public void openFlash(Boolean onOff) {
+        configManager.setTorch(camera, onOff);
     }
 
     /**

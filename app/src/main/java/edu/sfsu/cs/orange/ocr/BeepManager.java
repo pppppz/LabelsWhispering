@@ -25,14 +25,14 @@ import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.app.labelswhispering.Controller.Preference.SettingsActivity;
-import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.viewcontroller.ScanOCR;
+import com.app.labelswhispering.viewcontroller.preference.SettingsActivity;
 
 import java.io.IOException;
 
 /**
- * Manages beeps and vibrations for {@link ScanOCR_Activity}.
+ * Manages beeps and vibrations for {@link ScanOCR}.
  * <p/>
  * The code for this class was adapted from the ZXing project: http://code.google.com/p/zxing/
  */
@@ -53,7 +53,7 @@ public final class BeepManager {
     }
 
     private static boolean shouldBeep(SharedPreferences prefs, Context activity) {
-        boolean shouldPlayBeep = prefs.getBoolean(SettingsActivity.KEY_PLAY_BEEP, ScanOCR_Activity.DEFAULT_TOGGLE_BEEP);
+        boolean shouldPlayBeep = prefs.getBoolean(SettingsActivity.KEY_PLAY_BEEP, ScanOCR.DEFAULT_TOGGLE_BEEP);
         if (shouldPlayBeep) {
             // See if sound settings overrides this
             AudioManager audioService = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);

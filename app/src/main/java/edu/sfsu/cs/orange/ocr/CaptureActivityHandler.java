@@ -22,8 +22,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.app.labelswhispering.Controller.ScanOCR_Activity;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.viewcontroller.ScanOCR;
 
 import edu.sfsu.cs.orange.ocr.camera.CameraManager;
 
@@ -36,11 +36,11 @@ public final class CaptureActivityHandler extends Handler {
 
     private static final String TAG = CaptureActivityHandler.class.getSimpleName();
     private static State state;
-    private final ScanOCR_Activity activity;
+    private final ScanOCR activity;
     private final DecodeThread decodeThread;
     private final CameraManager cameraManager;
 
-    public CaptureActivityHandler(ScanOCR_Activity activity, CameraManager cameraManager, boolean isContinuousModeActive) {
+    public CaptureActivityHandler(ScanOCR activity, CameraManager cameraManager, boolean isContinuousModeActive) {
         this.activity = activity;
         this.cameraManager = cameraManager;
 

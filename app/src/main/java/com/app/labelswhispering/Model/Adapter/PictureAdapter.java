@@ -1,4 +1,4 @@
-package com.app.labelswhispering.Model.Adapter;
+package com.app.labelswhispering.model.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.app.labelswhispering.Model.Pictures;
 import com.app.labelswhispering.R;
+import com.app.labelswhispering.model.Pictures;
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 

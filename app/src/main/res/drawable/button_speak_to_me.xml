@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <solid android:color="#757575" />
+
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="4px"
+        android:right="4px">
+        <shape>
+            <solid android:color="@color/button_speak_it_to_me" />
+
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+</layer-list>
